@@ -1,51 +1,101 @@
 @import "tailwindcss";
 
 /*
-  Taste-skill knobs (Leonxlnx/taste-skill) — referência para tokens e evolução futura.
-  DESIGN_VARIANCE: 6 | MOTION_INTENSITY: 4 | VISUAL_DENSITY: 5
+  Redesign: paleta única (stone quente), um acento (teal desaturado).
+  Sombras com matiz do fundo; grain fixo; tipografia display + UI.
 */
 :root {
   --taste-dv: 6;
   --taste-mi: 4;
   --taste-vd: 5;
 
-  --background: #09090b;
-  --foreground: #fafafa;
-  --accent: #34d399;
-  --accent-muted: rgba(52, 211, 153, 0.12);
-  --surface: rgba(24, 24, 27, 0.65);
-  --border: rgba(63, 63, 70, 0.65);
+  --bg-base: #0b0a09;
+  --bg-elevated: #121110;
+  --bg-card: rgba(22, 21, 19, 0.72);
+  --foreground: #f4f2ef;
+  --muted: #8c8680;
+  --border: rgba(120, 113, 108, 0.22);
 
-  --motion-fast: 0.2s;
+  --accent: #3d9a8a;
+  --accent-bright: #5eb8a8;
+  --accent-muted: rgba(62, 154, 138, 0.14);
+  --accent-glow: rgba(62, 154, 138, 0.35);
+
+  --shadow-hue: 24 12% 6%;
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-hue) / 0.45);
+  --shadow-md: 0 12px 40px -12px hsl(var(--shadow-hue) / 0.55);
+
+  --z-base: 0;
+  --z-ambient: 1;
+  --z-content: 10;
+  --z-nav: 40;
+  --z-skip: 100;
+
+  --motion-fast: 0.22s;
   --motion-base: 0.32s;
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
-
-  --space-unit: calc(0.25rem + var(--taste-vd) * 0.06rem);
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-background: var(--bg-base);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-outfit);
 }
 
 html {
   color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-  background: var(--background);
+  background: var(--bg-base);
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+.font-display {
+  font-family: var(--font-outfit), var(--font-geist-sans), ui-sans-serif, system-ui,
+    sans-serif;
+}
+
 ::selection {
-  background: rgba(52, 211, 153, 0.25);
+  background: rgba(62, 154, 138, 0.28);
   color: var(--foreground);
 }
 
 :focus-visible {
-  outline: 2px solid rgba(52, 211, 153, 0.55);
-  outline-offset: 2px;
+  outline: 2px solid rgba(94, 184, 168, 0.65);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: var(--z-skip);
+  padding: 0.65rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--accent-muted);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-120%);
+  transition: opacity var(--motion-fast) var(--ease-out-expo),
+    transform var(--motion-fast) var(--ease-out-expo);
+}
+
+.skip-link:focus {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
