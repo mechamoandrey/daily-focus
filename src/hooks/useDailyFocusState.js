@@ -45,13 +45,16 @@ export function useDailyFocusState() {
 
     let cancelled = false;
 
+    const cached = readDailyFocusCache(userId);
+    if (cached?.state) {
+      setState(cached.state);
+      skipPersist.current = true;
+      setBootLoading(false);
+    } else {
+      setBootLoading(true);
+    }
+
     async function load() {
-      const cached = readDailyFocusCache(userId);
-      if (cached?.state && !cancelled) {
-        setState(cached.state);
-        skipPersist.current = true;
-        setBootLoading(false);
-      }
       try {
         setSyncError(null);
         const s = await loadRemoteUserState(supabase, userId);
@@ -72,7 +75,6 @@ export function useDailyFocusState() {
       }
     }
 
-    setBootLoading(true);
     startTransition(() => load());
 
     return () => {

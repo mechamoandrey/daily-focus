@@ -14,6 +14,7 @@ import {
   signInWithGoogle as signInWithGoogleApi,
   signOut as signOutApi,
 } from "@/lib/supabase/auth";
+import { clearDailyFocusCache } from "@/lib/cache/dailyFocusCache";
 import { getSupabaseClient } from "@/lib/supabase/client";
 import { messages } from "@/lib/i18n/messages";
 import { resolveInitialLocale } from "@/lib/i18n/resolveLocale";
@@ -89,8 +90,11 @@ export function AuthProvider({ children }) {
         ),
       };
     }
-    return signOutApi(supabase);
-  }, [supabase]);
+    const uid = user?.id;
+    const result = await signOutApi(supabase);
+    if (uid) clearDailyFocusCache(uid);
+    return result;
+  }, [supabase, user?.id]);
 
   const value = useMemo(
     () => ({
