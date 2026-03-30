@@ -25,14 +25,15 @@ export const LocaleContext = createContext(
 
 export function LocaleProvider({ children }) {
   const { user, supabase } = useAuth();
+  const userId = user?.id ?? null;
   const [locale, setLocaleState] = useState(() => resolveInitialLocale());
 
   useEffect(() => {
-    if (!user || !supabase) return;
+    if (!userId || !supabase) return;
     let cancelled = false;
     (async () => {
       try {
-        const prefs = await fetchUserPreferences(supabase, user.id);
+        const prefs = await fetchUserPreferences(supabase, userId);
         if (cancelled) return;
         const lang = normalizeLocale(prefs?.language);
         if (prefs?.language === "en" || prefs?.language === "pt") {
@@ -50,7 +51,7 @@ export function LocaleProvider({ children }) {
     return () => {
       cancelled = true;
     };
-  }, [user, supabase]);
+  }, [userId, supabase]);
 
   const t = useCallback(
     (key, vars) => {
