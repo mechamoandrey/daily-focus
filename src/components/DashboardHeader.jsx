@@ -11,7 +11,8 @@ export function DashboardHeader({
   className,
   dateLabel,
   visibleGoalsCount,
-  overallPercent
+  overallPercent,
+  weekExecutionPercent
 }) {
   const {
     t
@@ -54,6 +55,11 @@ export function DashboardHeader({
           <p className="text-sm text-zinc-400">
             {subtitleParts.join(" · ")}
           </p>
+          {typeof weekExecutionPercent === "number" ? <p className="text-xs text-zinc-500">
+              {t("dashboard.weekExecutionRate", {
+            pct: weekExecutionPercent
+          })}
+            </p> : null}
           <p className="text-xs text-zinc-500">
             <Link href="/history" className="cursor-pointer text-violet-400/95 underline decoration-violet-500/30 underline-offset-2 transition-colors duration-200 hover:text-violet-300">
               {t("dashboard.linkHistory")}

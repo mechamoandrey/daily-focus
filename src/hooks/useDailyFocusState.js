@@ -8,6 +8,14 @@ import { applyToggleSubtask } from "@/lib/repositories/dailyActions";
 import { loadRemoteUserState, persistFullStateRemote } from "@/lib/repositories/remoteSupabaseState";
 import { readDailyFocusCache, writeDailyFocusCache } from "@/lib/cache/dailyFocusCache";
 import { useAuth } from "@/hooks/use-auth";
+function cloneAppState(s) {
+  if (!s) return null;
+  try {
+    return structuredClone(s);
+  } catch {
+    return JSON.parse(JSON.stringify(s));
+  }
+}
 export function useDailyFocusState() {
   const {
     supabase,
@@ -19,12 +27,15 @@ export function useDailyFocusState() {
   const [bootLoading, setBootLoading] = useState(true);
   const [syncError, setSyncError] = useState(null);
   const skipPersist = useRef(true);
+  const lastPersistedStateRef = useRef(null);
+  const ignoreNextPersist = useRef(false);
   useEffect(() => {
     if (authLoading || !userId || !supabase) {
       if (!authLoading && !userId) {
         setState(null);
         setBootLoading(false);
         setSyncError(null);
+        lastPersistedStateRef.current = null;
       }
       return;
     }
@@ -32,6 +43,7 @@ export function useDailyFocusState() {
     const cached = readDailyFocusCache(userId);
     if (cached?.state) {
       setState(cached.state);
+      lastPersistedStateRef.current = cloneAppState(cached.state);
       skipPersist.current = true;
       setBootLoading(false);
     } else {
@@ -43,6 +55,7 @@ export function useDailyFocusState() {
         const s = await loadRemoteUserState(supabase, userId);
         if (!cancelled) {
           setState(s);
+          lastPersistedStateRef.current = cloneAppState(s);
           skipPersist.current = true;
           writeDailyFocusCache(userId, s);
         }
@@ -51,6 +64,7 @@ export function useDailyFocusState() {
           setSyncError(e?.message ?? "error.dataLoad");
           if (!readDailyFocusCache(userId)?.state) {
             setState(null);
+            lastPersistedStateRef.current = null;
           }
         }
       } finally {
@@ -68,12 +82,23 @@ export function useDailyFocusState() {
       skipPersist.current = false;
       return;
     }
+    if (ignoreNextPersist.current) {
+      ignoreNextPersist.current = false;
+      return;
+    }
     const t = setTimeout(() => {
+      const snapshot = cloneAppState(state);
       persistFullStateRemote(supabase, userId, state).then(() => {
         setSyncError(null);
+        lastPersistedStateRef.current = snapshot;
         writeDailyFocusCache(userId, state);
       }).catch(e => {
         setSyncError(e?.message ?? "error.save");
+        const rollback = lastPersistedStateRef.current;
+        if (rollback) {
+          ignoreNextPersist.current = true;
+          setState(cloneAppState(rollback));
+        }
       });
     }, 500);
     return () => clearTimeout(t);

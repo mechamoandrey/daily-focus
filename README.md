@@ -1,156 +1,87 @@
 # Daily Focus
 
-**Production:** [https://daily-focus-beta.vercel.app/](https://daily-focus-beta.vercel.app/)
+Web app for daily goals: subtasks, progress, streaks, and history. Authenticated users persist data in **Supabase**; the browser may cache state in **localStorage** for faster loads — it is **not** a second source of truth.
 
-A personal daily execution tracker built to turn consistency into a visible habit. Set goals with subtasks, track daily completion, review streaks, and analyze performance trends over time.
+**Production:** [daily-focus-beta.vercel.app](https://daily-focus-beta.vercel.app/)
 
-## Live demo
+## What it does
 
-The app is deployed on [Vercel](https://vercel.com/) at **[daily-focus-beta.vercel.app](https://daily-focus-beta.vercel.app/)** (production). Preview deployments use `*.vercel.app` URLs from the same project.
+- **Dashboard:** goals visible for the current weekday, checklist toggles, day completion and streak display.
+- **Goals:** create, edit, archive, and set which weekdays each goal appears.
+- **History / analytics:** past days, charts, and a consistency heatmap (data from stored daily records).
+- **Auth:** Google OAuth via Supabase; Row Level Security (RLS) restricts rows to `auth.uid()`.
 
-## Motivation
+Conditional visibility uses weekday keys (e.g. Monday–Sunday) aligned with the in-app calendar day.
 
-Staying consistent across multiple goals is hard without clear visibility into what's getting done and what's slipping. Daily Focus makes each day a concrete checklist — close it at 100% to extend your streak, and let the analytics show where you actually spend effort vs. where you fall off.
-
-## Features
-
-- **Daily dashboard** — goals with subtasks, progress bar, day-complete detection
-- **Streaks** — consecutive full-day counter with visual feedback
-- **History & analytics** — KPI cards, trend comparisons (7d / 30d), weekday pace breakdown, consistency heatmap
-- **Goal management** — create, edit, archive, reorder; system goals with localized seed data
-- **Per-goal deep stats** — completion rate, best/worst streaks, subtask bottleneck analysis
-- **Consistency heatmap** — GitHub-style contribution grid with per-goal filtering
-- **Multilanguage** — full English / Portuguese support with dictionary-based i18n (no heavy framework)
-- **Google OAuth** — sign in with Google via Supabase Auth; data syncs across devices
-- **Supabase backend** — goals, subtasks, daily records, and user preferences persisted with RLS
-- **Local-first** — works offline with localStorage; syncs to Supabase when authenticated
-- **LinkedIn Friday** — optional weekly LinkedIn posting checklist (appears on Fridays)
-
-## Stack
+## Tech stack
 
 | Layer | Technology |
-|-------|-----------|
-| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
-| UI | [React 19](https://react.dev/), [Tailwind CSS 4](https://tailwindcss.com/) |
-| Animation | [Framer Motion](https://www.framer.com/motion/) |
-| Icons | [Phosphor Icons](https://phosphoricons.com/) |
-| Auth & DB | [Supabase](https://supabase.com/) (Auth, Postgres, RLS) |
-| Hosting | [Vercel](https://vercel.com/) — [production](https://daily-focus-beta.vercel.app/) |
+|-------|------------|
+| Framework | Next.js (App Router) |
+| UI | React, Tailwind CSS |
+| Motion | Framer Motion |
+| Icons | Phosphor Icons |
+| Backend | Supabase (Auth, Postgres, RLS) |
+| Hosting | Vercel |
 
-## CI & deployment
+## Architecture (short)
 
-**GitHub Actions** runs a CI workflow on every **push** and **pull request** targeting `main`:
+- **Client state** in React holds the working copy while the user is signed in.
+- **Supabase** is the authoritative store: goals, subtasks, `daily_records`, `user_preferences`.
+- **localStorage** (`daily-focus:v1:state:*`) is an optional **read-through cache** of remote state for snappier boot — it does not drive migrations or automatic writes to the database.
 
-1. `npm ci` — install dependencies (uses npm cache)
-2. `npm run lint` — ESLint
-3. `npm run build` — Next.js production build (uses placeholder public env vars so the build does not require secrets)
+## Security
 
-The workflow fails the check if any step fails. There is no test script in this repo yet, so tests are not run.
+- Tables use **RLS** so each user only reads and writes their own rows (`user_id = auth.uid()` where applicable).
+- Apply all SQL migrations in `supabase/migrations/` before production use.
 
-**Hosting:** production ([daily-focus-beta.vercel.app](https://daily-focus-beta.vercel.app/)) and preview deployments are handled by **Vercel** through its [GitHub integration](https://vercel.com/docs/deployments/git/vercel-for-github). This repository does not deploy from GitHub Actions; CI only validates the code.
-
-## Project Structure
-
-```
-src/
-├── app/              # Next.js App Router pages and layouts
-│   ├── goals/        # Goal management page
-│   ├── history/      # Analytics and history page
-│   └── auth/         # OAuth callback handler
-├── components/       # React components
-│   ├── boxes/        # Goal editor overlay
-│   └── history/      # Heatmap, filters, day/goal detail modals
-├── hooks/            # Custom React hooks (auth, state management)
-├── providers/        # Context providers (auth, locale)
-├── lib/
-│   ├── i18n/         # Internationalization dictionaries and helpers
-│   ├── repositories/ # Data access layer (local + Supabase)
-│   ├── normalizers/  # State migration and data normalization
-│   ├── supabase/     # Supabase client, auth, middleware
-│   ├── cache/        # Local caching layer
-│   └── ...           # Analytics, date utils, goal model, progress calc
-├── data/             # Seed data for system goals
-└── constants/        # UI constants
-
-supabase/
-├── migrations/       # SQL migrations (9 files, ordered)
-└── reset/            # Schema reset script for development
-```
-
-## Getting Started
+## Run locally
 
 ### Prerequisites
 
 - Node.js 18+
-- A [Supabase](https://supabase.com/) project (free tier works)
-- Google OAuth credentials (for sign-in)
+- A Supabase project
+- Google OAuth client (for “Sign in with Google”)
 
-### 1. Install dependencies
+### Install
 
 ```bash
 npm install
 ```
 
-### 2. Configure environment
-
-Copy the example and fill in your Supabase credentials:
+### Environment
 
 ```bash
 cp .env.example .env.local
 ```
 
-Required variables:
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon (public) key |
 
-| Variable | Description |
-|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anonymous/public key |
+### Supabase setup
 
-### 3. Set up Supabase
+1. Run migrations from `supabase/migrations/` in order in the SQL Editor.
+2. Enable the Google provider under Authentication → Providers and configure OAuth credentials.
+3. Add redirect URLs (e.g. `http://localhost:3000/auth/callback`, production and preview URLs as needed).
 
-1. Run the SQL migrations in order from `supabase/migrations/` in your Supabase SQL Editor
-2. Enable **Google** provider under Authentication > Providers (requires Google Cloud Console OAuth credentials)
-3. Under Authentication > URL Configuration, add **Redirect URLs** for every environment that will complete Google OAuth (include `/auth/callback` on each origin):
-   - Local: `http://localhost:3000/auth/callback`
-   - Production: `https://daily-focus-beta.vercel.app/auth/callback`
-   - **Preview deployments:** add `https://*.vercel.app/auth/callback` if your Supabase plan supports wildcard redirect URLs, or add each preview URL as needed
-
-### 4. Run locally
+### Dev server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) (or compare with the [production build](https://daily-focus-beta.vercel.app/)).
+Open [http://localhost:3000](http://localhost:3000).
 
-## Database & Migrations
+## CI
 
-Migrations live in `supabase/migrations/` and are numbered sequentially:
+GitHub Actions runs `npm ci`, `npm run lint`, and `npm run build` on pushes and PRs to `main`. The build uses placeholder public env vars so secrets are not required for CI.
 
-1. `001` — Goals table
-2. `002` — Subtasks table
-3. `003` — Daily records table
-4. `004` — User preferences table
-5. `005` — Row Level Security policies
-6. `006` — Indexes and constraints
-7. `007` — `updated_at` triggers
-8. `008` — App compatibility columns
-9. `009` — Language preference column
+## Deployment
 
-Apply them in order via the Supabase SQL Editor or CLI. A full reset script is available at `supabase/reset/reset_public_schema.sql`.
-
-## Roadmap
-
-- [ ] PWA support with offline sync queue
-- [ ] Weekly/monthly summary emails
-- [ ] Goal templates and sharing
-- [ ] Dark/light theme toggle
-- [ ] Mobile-native app (React Native)
-
-## Screenshots
-
-*Coming soon — see the [live app](https://daily-focus-beta.vercel.app/) for the current UI.*
+Connect the repo to **Vercel**, set the same `NEXT_PUBLIC_*` variables in the project settings, and deploy. Preview deployments use Vercel preview URLs; add those to Supabase redirect allowlists if you use OAuth on previews.
 
 ## License
 
-This project is part of a personal portfolio. All rights reserved.
+Personal / portfolio use — all rights reserved.

@@ -14,7 +14,7 @@ export function LocaleProvider({
     supabase
   } = useAuth();
   const userId = user?.id ?? null;
-  const [locale, setLocaleState] = useState("pt");
+  const [locale, setLocaleState] = useState("en");
   useEffect(() => {
     startTransition(() => {
       setLocaleState(resolveInitialLocale());
@@ -41,8 +41,8 @@ export function LocaleProvider({
     };
   }, [userId, supabase]);
   const t = useCallback((key, vars) => {
-    const table = messages[locale] || messages.pt;
-    let s = table[key] ?? messages.pt[key] ?? key;
+    const table = messages[locale] || messages.en;
+    let s = table[key] ?? messages.en[key] ?? messages.pt[key] ?? key;
     if (vars && typeof vars === "object") {
       for (const [k, v] of Object.entries(vars)) {
         s = s.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
@@ -79,7 +79,7 @@ export function LocaleProvider({
 export function useLocale() {
   const ctx = useContext(LocaleContext);
   if (!ctx) {
-    throw new Error("useLocale must be used inside LocaleProvider.");
+    throw new Error("useLocale requires LocaleProvider.");
   }
   return ctx;
 }

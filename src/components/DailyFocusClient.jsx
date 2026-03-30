@@ -16,6 +16,7 @@ import { countStats } from "@/lib/progress";
 import { DataStateError } from "@/components/DataStateError";
 import { useLocale } from "@/providers/locale-provider";
 import { translateSyncError } from "@/lib/i18n/translateSyncError";
+import { computeWeeklyExecutionRate } from "@/lib/metrics/weeklyExecutionRate";
 function ShellSkeleton() {
   return <AppShell>
       <main className="flex-1 px-4 py-8 sm:px-8 sm:py-12 lg:px-12">
@@ -53,6 +54,7 @@ export function DailyFocusClient() {
     return <ShellSkeleton />;
   }
   const dayYmd = state.lastResetDate;
+  const weekExecutionPercent = computeWeeklyExecutionRate(state, dayYmd);
   const stats = countStats(state.goals, dayYmd, state.linkedinFriday);
   const linkedinToday = linkedinForProgressOnDate(state.linkedinFriday, dayYmd);
   const sectionHeading = frentesExecucaoTitle(stats.goalsTotal, t);
@@ -64,7 +66,7 @@ export function DailyFocusClient() {
             {syncError ? <p className="rounded-xl border border-amber-500/25 bg-amber-500/[0.06] px-4 py-2 text-center text-sm text-amber-100/95">
                 {translateSyncError(syncError, t)}
               </p> : null}
-            <DashboardHeader dayComplete={dayComplete} dateLabel={formatYMDLongLocalized(dayYmd, locale)} visibleGoalsCount={stats.goalsTotal} overallPercent={overallPercent} />
+            <DashboardHeader dayComplete={dayComplete} dateLabel={formatYMDLongLocalized(dayYmd, locale)} visibleGoalsCount={stats.goalsTotal} overallPercent={overallPercent} weekExecutionPercent={weekExecutionPercent} />
 
             <DailyProgress percent={overallPercent} subDone={stats.subDone} subTotal={stats.subTotal} goalsComplete={stats.goalsComplete} goalsTotal={stats.goalsTotal} dayComplete={dayComplete} />
 
