@@ -1,3 +1,4 @@
+import { sanitizeOptionalUuidId } from "@/lib/repositories/supabase/mappers";
 export async function deleteGoalsForUser(supabase, userId) {
   const {
     error
@@ -31,9 +32,12 @@ export async function fetchGoalsWithSubtasks(supabase, userId) {
 }
 export async function insertGoals(supabase, rows) {
   if (!rows.length) return;
+  const cleaned = rows.map(r => sanitizeOptionalUuidId({
+    ...r
+  }));
   const {
     error
-  } = await supabase.from("goals").insert(rows);
+  } = await supabase.from("goals").insert(cleaned);
   if (error) throw error;
 }
 export async function listGoalIdMapRows(supabase, userId) {

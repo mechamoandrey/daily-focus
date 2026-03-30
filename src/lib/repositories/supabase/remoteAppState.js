@@ -31,7 +31,6 @@ function buildLinkedinFromRow(row, subs) {
   };
 }
 function appGoalToInsertRow(userId, g) {
-  const now = new Date().toISOString();
   const row = {
     user_id: userId,
     title: g.title ?? "",
@@ -43,9 +42,7 @@ function appGoalToInsertRow(userId, g) {
     display_order: typeof g.order === "number" ? g.order : 0,
     status: g.status ?? "active",
     is_linkedin: false,
-    system_key: null,
-    created_at: g.createdAt ?? now,
-    updated_at: now
+    system_key: null
   };
   const gid = typeof g.id === "string" ? g.id.trim() : "";
   if (SYSTEM_GOAL_IDS.has(gid)) {
@@ -58,7 +55,6 @@ function appGoalToInsertRow(userId, g) {
 }
 function linkedinGoalInsertRow(userId, state) {
   const li = state.linkedinFriday ?? emptyLinkedinFridayFromTemplate();
-  const now = new Date().toISOString();
   return {
     user_id: userId,
     title: LINKEDIN_FRIDAY_META.title,
@@ -70,9 +66,7 @@ function linkedinGoalInsertRow(userId, state) {
     display_order: 9999,
     status: "active",
     is_linkedin: true,
-    system_key: LINKEDIN_SYSTEM_KEY,
-    created_at: now,
-    updated_at: now
+    system_key: LINKEDIN_SYSTEM_KEY
   };
 }
 export async function assembleStateFromRemote(supabase, userId) {

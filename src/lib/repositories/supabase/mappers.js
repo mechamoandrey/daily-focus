@@ -6,21 +6,34 @@ export function isValidUuid(s) {
 }
 export function sanitizeOptionalUuidId(row) {
   if (!row || typeof row !== "object") return row;
-  if (!("id" in row)) return row;
-  const v = row.id;
-  if (v == null || typeof v !== "string" || !isValidUuid(v)) {
-    delete row.id;
+  if ("id" in row) {
+    const v = row.id;
+    if (v == null || typeof v !== "string" || !isValidUuid(v)) {
+      delete row.id;
+    }
   }
+  delete row.created_at;
+  delete row.updated_at;
   return row;
 }
 export function normalizeGoalsForRemoteInsert(goals) {
   const list = Array.isArray(goals) ? goals : [];
   return list.filter(g => g && typeof g === "object").map(g => {
     const gid = typeof g.id === "string" ? g.id.trim() : "";
-    if (SYSTEM_GOAL_IDS.has(gid)) return g;
-    if (isValidUuid(gid)) return g;
-    return {
+    if (SYSTEM_GOAL_IDS.has(gid)) return {
       ...g,
+      id: gid
+    };
+    if (isValidUuid(gid)) return {
+      ...g,
+      id: gid
+    };
+    const {
+      id: _drop,
+      ...rest
+    } = g;
+    return {
+      ...rest,
       id: crypto.randomUUID()
     };
   });
@@ -55,9 +68,7 @@ export function appSubtaskToRow(userId, goalUuid, s) {
     goal_id: goalUuid,
     label: raw.label ?? "",
     hint: typeof raw.hint === "string" ? raw.hint : null,
-    completed: done,
-    created_at: raw.createdAt ?? new Date().toISOString(),
-    updated_at: new Date().toISOString()
+    completed: done
   };
   if (isValidUuid(id)) {
     row.id = id;
