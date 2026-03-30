@@ -20,7 +20,14 @@ export function getSupabaseClient() {
   if (!browserSingleton) {
     const url = getNextPublicSupabaseUrl();
     const key = getNextPublicSupabaseAnonKey();
-    browserSingleton = createClient(url, key);
+    browserSingleton = createClient(url, key, {
+      auth: {
+        flowType: "pkce",
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      },
+    });
   }
   return browserSingleton;
 }

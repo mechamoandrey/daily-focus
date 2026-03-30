@@ -16,8 +16,9 @@ function AuthScreen() {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("auth") === "error") {
-      const path = window.location.pathname || "/";
-      window.history.replaceState({}, "", path);
+      const clean =
+        `${window.location.pathname}${window.location.search}` || "/";
+      window.history.replaceState(null, "", clean);
       startTransition(() => setErr("auth.urlError"));
     }
   }, []);
