@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, startTransition, useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { messages } from "@/lib/i18n/messages";
 import { LOCALE_STORAGE_KEY, normalizeLocale, resolveInitialLocale } from "@/lib/i18n/resolveLocale";
@@ -14,7 +14,12 @@ export function LocaleProvider({
     supabase
   } = useAuth();
   const userId = user?.id ?? null;
-  const [locale, setLocaleState] = useState(() => resolveInitialLocale());
+  const [locale, setLocaleState] = useState("pt");
+  useEffect(() => {
+    startTransition(() => {
+      setLocaleState(resolveInitialLocale());
+    });
+  }, []);
   useEffect(() => {
     if (!userId || !supabase) return;
     let cancelled = false;
