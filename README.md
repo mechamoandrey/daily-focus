@@ -1,6 +1,12 @@
 # Daily Focus
 
+**Production:** [https://daily-focus-beta.vercel.app/](https://daily-focus-beta.vercel.app/)
+
 A personal daily execution tracker built to turn consistency into a visible habit. Set goals with subtasks, track daily completion, review streaks, and analyze performance trends over time.
+
+## Live demo
+
+The app is deployed on [Vercel](https://vercel.com/) at **[daily-focus-beta.vercel.app](https://daily-focus-beta.vercel.app/)** (production). Preview deployments use `*.vercel.app` URLs from the same project.
 
 ## Motivation
 
@@ -29,7 +35,7 @@ Staying consistent across multiple goals is hard without clear visibility into w
 | Animation | [Framer Motion](https://www.framer.com/motion/) |
 | Icons | [Phosphor Icons](https://phosphoricons.com/) |
 | Auth & DB | [Supabase](https://supabase.com/) (Auth, Postgres, RLS) |
-| Hosting | Vercel (or any Node.js host) |
+| Hosting | [Vercel](https://vercel.com/) — [production](https://daily-focus-beta.vercel.app/) |
 
 ## CI & deployment
 
@@ -41,7 +47,7 @@ Staying consistent across multiple goals is hard without clear visibility into w
 
 The workflow fails the check if any step fails. There is no test script in this repo yet, so tests are not run.
 
-**Hosting:** production and preview deployments are handled by **Vercel** through its [GitHub integration](https://vercel.com/docs/deployments/git/vercel-for-github). This repository does not deploy from GitHub Actions; CI only validates the code.
+**Hosting:** production ([daily-focus-beta.vercel.app](https://daily-focus-beta.vercel.app/)) and preview deployments are handled by **Vercel** through its [GitHub integration](https://vercel.com/docs/deployments/git/vercel-for-github). This repository does not deploy from GitHub Actions; CI only validates the code.
 
 ## Project Structure
 
@@ -106,7 +112,7 @@ Required variables:
 2. Enable **Google** provider under Authentication > Providers (requires Google Cloud Console OAuth credentials)
 3. Under Authentication > URL Configuration, add **Redirect URLs** for every environment that will complete Google OAuth (include `/auth/callback` on each origin):
    - Local: `http://localhost:3000/auth/callback`
-   - Production: `https://your-domain.com/auth/callback` (or your Vercel URL)
+   - Production: `https://daily-focus-beta.vercel.app/auth/callback`
    - **Preview deployments:** add `https://*.vercel.app/auth/callback` if your Supabase plan supports wildcard redirect URLs, or add each preview URL as needed
 
 ### 4. Run locally
@@ -115,7 +121,7 @@ Required variables:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) (or compare with the [production build](https://daily-focus-beta.vercel.app/)).
 
 ## Database & Migrations
 
@@ -143,7 +149,7 @@ Apply them in order via the Supabase SQL Editor or CLI. A full reset script is a
 
 ## Screenshots
 
-*Coming soon — deploy link and screenshots will be added here.*
+*Coming soon — see the [live app](https://daily-focus-beta.vercel.app/) for the current UI.*
 
 ## License
 
