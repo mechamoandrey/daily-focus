@@ -59,7 +59,7 @@ export function normalizeSystemGoal(template, stored, index) {
   const templateById = new Map(template.subtasks.map((t) => [t.id, t]));
   const prevSubs = Array.isArray(prev.subtasks) ? prev.subtasks : [];
 
-  /** Sem subtarefas salvas: baseline do template + progresso em localStorage. */
+  /** No saved subtasks: baseline from template. */
   let subtasks;
   if (prevSubs.length === 0) {
     subtasks = template.subtasks.map((t) => {
@@ -121,7 +121,8 @@ export function normalizeSystemGoal(template, stored, index) {
     status: typeof prev.status === "string" ? prev.status : "active",
     createdAt: typeof prev.createdAt === "string" ? prev.createdAt : now,
     updatedAt: typeof prev.updatedAt === "string" ? prev.updatedAt : now,
-    isSystem: true,
+    /** Prefer DB-backed flag; default false so seeded template goals are user-owned in the UI. */
+    isSystem: typeof prev.isSystem === "boolean" ? prev.isSystem : false,
     order: typeof prev.order === "number" ? prev.order : index,
     isVisible: prev.isVisible !== false,
     visibleDays: normalizeGoalVisibleDays(prev.visibleDays),

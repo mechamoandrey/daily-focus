@@ -74,7 +74,8 @@ function appGoalToInsertRow(userId, g) {
     title: g.title ?? "",
     description: g.description ?? "",
     category: g.category ?? null,
-    is_system: Boolean(g.isSystem),
+    /** All goals are user-owned rows; system_key is only for stable id / dedup mapping. */
+    is_system: false,
     is_visible: g.isVisible !== false,
     visible_days: Array.isArray(g.visibleDays) ? g.visibleDays : [],
     display_order: typeof g.order === "number" ? g.order : 0,
@@ -87,10 +88,8 @@ function appGoalToInsertRow(userId, g) {
   const gid = typeof g.id === "string" ? g.id.trim() : "";
   if (SYSTEM_GOAL_IDS.has(gid)) {
     row.system_key = gid;
-    row.is_system = true;
   } else {
     row.system_key = null;
-    row.is_system = Boolean(g.isSystem);
     if (isValidUuid(gid)) row.id = gid;
   }
   return sanitizeOptionalUuidId(row);
@@ -108,7 +107,7 @@ function linkedinGoalInsertRow(userId, state) {
     title: LINKEDIN_FRIDAY_META.title,
     description: LINKEDIN_FRIDAY_META.description,
     category: null,
-    is_system: true,
+    is_system: false,
     is_visible: true,
     visible_days: li.visibleDays ?? ["friday"],
     display_order: 9999,
@@ -250,9 +249,8 @@ export async function seedDefaultUserData(supabase, userId) {
 }
 
 /**
- * Migração localStorage → Supabase desactivada por decisão de produto.
- * Mantido para compatibilidade de imports; nunca importa dados locais para o banco.
- * @returns {Promise<boolean>} sempre false
+ * Legacy hook — localStorage → Supabase migration is permanently disabled.
+ * @returns {Promise<boolean>} always false
  */
 export async function tryMigrateLocalToRemote(supabase, userId) {
   void supabase;
@@ -261,7 +259,8 @@ export async function tryMigrateLocalToRemote(supabase, userId) {
 }
 
 /**
- * Carrega remoto; se o utilizador não tiver metas, aplica seed inicial (sem ler localStorage).
+ * Loads remote state; seeds initial goals in Supabase only when the user has zero goals.
+ * Seed rows are user-owned (`is_system = false`); `system_key` is used only for id mapping.
  */
 export async function loadRemoteUserState(supabase, userId) {
   const n = await countGoalsForUser(supabase, userId);
