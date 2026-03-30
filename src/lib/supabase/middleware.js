@@ -1,18 +1,19 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
+import { getPublicSupabaseConfigOrNull } from "@/lib/env/public";
 
 /**
- * Atualiza a sessão Supabase a partir dos cookies (refresh token).
+ * Refreshes Supabase session from cookies (refresh token).
  */
 export async function updateSession(request) {
   let supabaseResponse = NextResponse.next({ request });
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) {
+  const config = getPublicSupabaseConfigOrNull();
+  if (!config) {
     return supabaseResponse;
   }
 
+  const { url, key } = config;
   const supabase = createServerClient(url, key, {
     cookies: {
       getAll() {

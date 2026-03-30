@@ -1,18 +1,17 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import {
+  getNextPublicSupabaseAnonKey,
+  getNextPublicSupabaseUrl,
+} from "@/lib/env/public";
 
 /**
- * Cliente Supabase em Route Handlers / Server Components (troca de código OAuth).
+ * Supabase client for Route Handlers / Server Components (OAuth code exchange).
  */
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY"
-    );
-  }
+  const url = getNextPublicSupabaseUrl();
+  const key = getNextPublicSupabaseAnonKey();
   return createServerClient(url, key, {
     cookies: {
       getAll() {
@@ -24,7 +23,7 @@ export async function createSupabaseServerClient() {
             cookieStore.set(name, value, options)
           );
         } catch {
-          /* Server Component — cookies read-only em alguns contextos */
+          /* Server Component — cookies may be read-only in some contexts */
         }
       },
     },
