@@ -1,10 +1,12 @@
-import { mergeGoalsWithTemplates } from "@/lib/goalModel";
+import { sortGoalsByOrder } from "@/lib/goalModel";
 import { normalizeHistoryArray } from "@/lib/historyDetail";
 import { todayYMD } from "@/lib/dateUtils";
 import { mergeLinkedinStored } from "@/lib/normalizers/linkedinStoredMerge";
+import { ensureGoalDomainFields } from "@/lib/normalizers/ensureDomainGoals";
 export function migratePersistedState(parsed) {
   const raw = parsed && typeof parsed === "object" ? parsed : {};
-  const goals = mergeGoalsWithTemplates(Array.isArray(raw.goals) ? raw.goals : []);
+  const rawGoals = Array.isArray(raw.goals) ? raw.goals : [];
+  const goals = sortGoalsByOrder(rawGoals.filter(g => g && typeof g === "object").map(g => ensureGoalDomainFields(g)));
   const history = normalizeHistoryArray(Array.isArray(raw.history) ? raw.history : []);
   const preferences = raw.preferences && typeof raw.preferences === "object" ? migratePreferences(raw.preferences) : null;
   return {

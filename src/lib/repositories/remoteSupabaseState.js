@@ -1,1 +1,1 @@
-export { assembleStateFromRemote, fetchGoalsWithSubtasks, loadRemoteUserState, persistFullStateRemote, seedDefaultUserData, tryMigrateLocalToRemote } from "@/lib/repositories/supabase/remoteAppState";
+export { assembleStateFromRemote, fetchGoalsWithSubtasks, loadRemoteUserState, persistFullStateRemote, tryMigrateLocalToRemote } from "@/lib/repositories/supabase/remoteAppState";

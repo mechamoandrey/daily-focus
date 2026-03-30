@@ -1,4 +1,4 @@
-import { mergeGoalsWithTemplates, nextUserGoalOrder, normalizeSystemGoal, normalizeUserGoal, sortGoalsByOrder, SYSTEM_GOAL_IDS } from "@/lib/goalModel";
+import { nextUserGoalOrder, normalizeSystemGoal, normalizeUserGoal, sortGoalsByOrder, SYSTEM_GOAL_IDS } from "@/lib/goalModel";
 import { INITIAL_GOALS } from "@/data/initialGoals";
 export function getGoals(state) {
   return state?.goals ?? [];
@@ -9,19 +9,19 @@ export function getGoalsSorted(state) {
 export function deleteGoal(state, goalId) {
   return {
     ...state,
-    goals: mergeGoalsWithTemplates(state.goals.filter(g => g.id !== goalId))
+    goals: sortGoalsByOrder(state.goals.filter(g => g.id !== goalId))
   };
 }
 export function saveGoal(state, goalRecord) {
   return {
     ...state,
-    goals: mergeGoalsWithTemplates(state.goals.map(x => x.id === goalRecord.id ? goalRecord : x))
+    goals: sortGoalsByOrder(state.goals.map(x => x.id === goalRecord.id ? goalRecord : x))
   };
 }
 export function saveNewGoal(state, goalRecord) {
   return {
     ...state,
-    goals: mergeGoalsWithTemplates([...state.goals, goalRecord])
+    goals: sortGoalsByOrder([...state.goals, goalRecord])
   };
 }
 export function updateSystemGoalFromTemplate(state, templateId, merged, templateIndex) {
@@ -30,7 +30,7 @@ export function updateSystemGoalFromTemplate(state, templateId, merged, template
   const updated = normalizeSystemGoal(template, merged, templateIndex);
   return {
     ...state,
-    goals: mergeGoalsWithTemplates(state.goals.map(x => x.id === updated.id ? updated : x))
+    goals: sortGoalsByOrder(state.goals.map(x => x.id === updated.id ? updated : x))
   };
 }
 export { nextUserGoalOrder, normalizeUserGoal, normalizeSystemGoal, SYSTEM_GOAL_IDS };

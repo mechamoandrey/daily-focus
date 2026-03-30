@@ -1,21 +1,26 @@
 import { emptyLinkedinFridayFromTemplate } from "@/data/linkedinFriday";
 import { addDaysYMD, todayYMD, ymdCompare } from "@/lib/dateUtils";
-import { mergeGoalsWithTemplates, resetGoalsForNewDay } from "@/lib/goalModel";
+import { resetGoalsForNewDay, sortGoalsByOrder } from "@/lib/goalModel";
 import { buildHistoryDayDetail } from "@/lib/historyDetail";
 import { mergeLinkedinStored } from "@/lib/normalizers/linkedinStoredMerge";
+import { ensureGoalDomainFields } from "@/lib/normalizers/ensureDomainGoals";
 import { computeOverallPercent } from "@/lib/progress";
 export { STORAGE_KEY } from "@/lib/storageKeys";
+function normalizeGoalsList(goals) {
+  const list = Array.isArray(goals) ? goals : [];
+  return sortGoalsByOrder(list.map(g => ensureGoalDomainFields(g)));
+}
 export function applyDailyRollover(state) {
   const today = todayYMD();
   let last = state.lastResetDate || today;
   if (ymdCompare(last, today) >= 0) {
-    state.goals = mergeGoalsWithTemplates(state.goals);
+    state.goals = normalizeGoalsList(state.goals);
     state.linkedinFriday = mergeLinkedinStored(state.linkedinFriday);
     if (!state.lastResetDate) state.lastResetDate = today;
     return state;
   }
   let cursor = last;
-  let goalsSnapshot = mergeGoalsWithTemplates(state.goals);
+  let goalsSnapshot = normalizeGoalsList(state.goals);
   let linkedinSnapshot = mergeLinkedinStored(state.linkedinFriday);
   while (ymdCompare(cursor, today) < 0) {
     const percent = ymdCompare(cursor, last) === 0 ? computeOverallPercent(goalsSnapshot, cursor, linkedinSnapshot) : 0;
@@ -26,7 +31,7 @@ export function applyDailyRollover(state) {
       linkedinSnapshot = emptyLinkedinFridayFromTemplate();
     }
   }
-  state.goals = resetGoalsForNewDay(mergeGoalsWithTemplates(state.goals));
+  state.goals = resetGoalsForNewDay(normalizeGoalsList(state.goals));
   state.linkedinFriday = emptyLinkedinFridayFromTemplate();
   state.lastResetDate = today;
   return state;
@@ -55,7 +60,7 @@ export function createDefaultState() {
     lastResetDate: todayYMD(),
     streak: 0,
     history: [],
-    goals: mergeGoalsWithTemplates([]),
+    goals: [],
     linkedinFriday: emptyLinkedinFridayFromTemplate()
   };
 }

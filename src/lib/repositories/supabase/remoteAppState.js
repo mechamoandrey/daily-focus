@@ -1,33 +1,14 @@
 import { LINKEDIN_FRIDAY_META, emptyLinkedinFridayFromTemplate, INITIAL_LINKEDIN_SUBTASKS } from "@/data/linkedinFriday";
-import { mergeGoalsWithTemplates, SYSTEM_GOAL_IDS } from "@/lib/goalModel";
-import { applyDailyRollover, createDefaultState } from "@/lib/storage";
+import { SYSTEM_GOAL_IDS, sortGoalsByOrder } from "@/lib/goalModel";
+import { applyDailyRollover } from "@/lib/storage";
+import { ensureGoalDomainFields } from "@/lib/normalizers/ensureDomainGoals";
 import { appSubtaskToRow, dbGoalToApp, isValidUuid, normalizeGoalsForRemoteInsert, resolveDbGoalUuid, sanitizeOptionalUuidId, subRowToApp } from "@/lib/repositories/supabase/mappers";
 import { deleteDailyRecordsForUser, fetchDailyRecordsOrdered, insertDailyRecords } from "@/lib/repositories/supabase/dailyRecordsRemote";
-import { countGoalsForUser, deleteGoalsForUser, fetchGoalsWithSubtasks, insertGoals, listGoalIdMapRows } from "@/lib/repositories/supabase/goalsRemote";
+import { deleteGoalsForUser, fetchGoalsWithSubtasks, insertGoals, listGoalIdMapRows } from "@/lib/repositories/supabase/goalsRemote";
 import { fetchUserPreferences, upsertUserPreferences } from "@/lib/repositories/supabase/preferencesRemote";
 import { insertSubtasks } from "@/lib/repositories/supabase/subtasksRemote";
 export { fetchGoalsWithSubtasks } from "@/lib/repositories/supabase/goalsRemote";
 const LINKEDIN_SYSTEM_KEY = LINKEDIN_FRIDAY_META.id;
-
-const seedInFlight = new Map();
-
-async function ensureSeedIfNoGoals(supabase, userId) {
-  const n = await countGoalsForUser(supabase, userId);
-  if (n > 0) return;
-  if (!seedInFlight.has(userId)) {
-    const promise = (async () => {
-      const n2 = await countGoalsForUser(supabase, userId);
-      if (n2 === 0) {
-        await seedDefaultUserData(supabase, userId);
-      }
-    })();
-    seedInFlight.set(userId, promise);
-    void promise.finally(() => {
-      seedInFlight.delete(userId);
-    });
-  }
-  await seedInFlight.get(userId);
-}
 function buildLinkedinFromRow(row, subs) {
   const base = emptyLinkedinFridayFromTemplate();
   if (!row) return base;
@@ -112,7 +93,7 @@ export async function assembleStateFromRemote(supabase, userId) {
       regular.push(dbGoalToApp(g, subs));
     }
   }
-  const mergedGoals = mergeGoalsWithTemplates(regular);
+  const mergedGoals = sortGoalsByOrder(regular.map(g => ensureGoalDomainFields(g)));
   const linkedinFriday = linkedinRow ? buildLinkedinFromRow(linkedinRow, linkedinSubs) : emptyLinkedinFridayFromTemplate();
   const records = await fetchDailyRecordsOrdered(supabase, userId);
   const history = records.map(r => ({
@@ -180,16 +161,11 @@ export async function persistFullStateRemote(supabase, userId, state) {
     updated_at: new Date().toISOString()
   });
 }
-export async function seedDefaultUserData(supabase, userId) {
-  const next = createDefaultState();
-  await persistFullStateRemote(supabase, userId, next);
-}
 export async function tryMigrateLocalToRemote(supabase, userId) {
   void supabase;
   void userId;
   return false;
 }
 export async function loadRemoteUserState(supabase, userId) {
-  await ensureSeedIfNoGoals(supabase, userId);
   return assembleStateFromRemote(supabase, userId);
 }
