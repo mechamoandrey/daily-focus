@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { GoogleLogo } from "@phosphor-icons/react";
 import { useAuth } from "@/hooks/use-auth";
@@ -16,9 +16,9 @@ function AuthScreen() {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("auth") === "error") {
-      setErr("auth.urlError");
       const path = window.location.pathname || "/";
       window.history.replaceState({}, "", path);
+      startTransition(() => setErr("auth.urlError"));
     }
   }, []);
 
