@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { AppShell } from "@/components/AppShell";
 import { DailyProgress } from "@/components/DailyProgress";
@@ -82,10 +83,17 @@ export function DailyFocusClient() {
               </div>
 
               <div className="grid gap-5 lg:grid-cols-2">
-                <AnimatePresence mode="popLayout">
-                  {dashboardGoals.map((g, i) => <GoalCard key={g.id} goal={g} index={i} onToggle={toggleSubtask} />)}
-                  {linkedinToday ? <LinkedInFridayCard key="linkedin-friday" goal={state.linkedinFriday} index={dashboardGoals.length} onToggle={toggleSubtask} /> : null}
-                </AnimatePresence>
+                {stats.goalsTotal === 0 ? <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/[0.06] bg-zinc-900/30 px-6 py-12 text-center lg:col-span-2">
+                    <p className="max-w-md text-sm leading-relaxed text-zinc-400">
+                      {t("dashboard.emptyGoalsHint")}
+                    </p>
+                    <Link href="/goals" className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-500 px-4 py-2.5 text-sm font-medium text-white shadow-[0_12px_40px_-12px_rgba(139,92,246,0.65)] ring-1 ring-violet-400/30 transition hover:bg-violet-400">
+                      {t("dashboard.createGoalCta")}
+                    </Link>
+                  </div> : <AnimatePresence mode="popLayout">
+                    {dashboardGoals.map((g, i) => <GoalCard key={g.id} goal={g} index={i} onToggle={toggleSubtask} />)}
+                    {linkedinToday ? <LinkedInFridayCard key="linkedin-friday" goal={state.linkedinFriday} index={dashboardGoals.length} onToggle={toggleSubtask} /> : null}
+                  </AnimatePresence>}
               </div>
             </section>
 

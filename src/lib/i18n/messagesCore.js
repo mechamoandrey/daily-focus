@@ -81,7 +81,9 @@ export const coreMessages = {
     "dashboard.linkHistory": "Ver histórico e análises",
     "dashboard.frentes0": "Nenhuma frente hoje",
     "dashboard.frentes1": "1 frente de execução",
-    "dashboard.frentesN": "{n} frentes de execução"
+    "dashboard.frentesN": "{n} frentes de execução",
+    "dashboard.createGoalCta": "Criar nova meta",
+    "dashboard.emptyGoalsHint": "Cria a tua primeira meta na página Metas."
   },
   en: {
     "nav.vision": "View",
@@ -165,6 +167,8 @@ export const coreMessages = {
     "dashboard.linkHistory": "View history & insights",
     "dashboard.frentes0": "No fronts today",
     "dashboard.frentes1": "1 execution front",
-    "dashboard.frentesN": "{n} execution fronts"
+    "dashboard.frentesN": "{n} execution fronts",
+    "dashboard.createGoalCta": "Create new goal",
+    "dashboard.emptyGoalsHint": "Create your first goal on the Goals page."
   }
 };
