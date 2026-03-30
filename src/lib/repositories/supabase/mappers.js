@@ -74,6 +74,9 @@ export function appSubtaskToRow(userId, goalUuid, s) {
     row.id = id;
   } else if (id) {
     row.external_key = id;
+    row.id = crypto.randomUUID();
+  } else {
+    row.id = crypto.randomUUID();
   }
   return sanitizeOptionalUuidId(row);
 }
