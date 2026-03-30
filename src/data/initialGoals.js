@@ -1,6 +1,5 @@
 /**
- * Canonical goal structure — used for defaults and migrations.
- * Subtask `done` is hydrated from localStorage at runtime.
+ * Canonical goal structure — used for default seed content (persisted only via Supabase).
  */
 export const INITIAL_GOALS = [
   {

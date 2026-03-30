@@ -1,6 +1,6 @@
 /**
  * Fachada de persistência: a UI e hooks devem preferir estes nomes.
- * Implementação actual: `localDataSource` dentro de `@/lib/storage`.
+ * Legacy re-exports. Persisted state lives in Supabase; these no longer read/write the old local blob.
  */
 
 export {

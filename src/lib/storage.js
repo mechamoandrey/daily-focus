@@ -1,13 +1,11 @@
 import { emptyLinkedinFridayFromTemplate } from "@/data/linkedinFriday";
 import { addDaysYMD, todayYMD, ymdCompare } from "@/lib/dateUtils";
-import { localDataSource } from "@/lib/dataSources/localDataSource";
 import {
   mergeGoalsWithTemplates,
   resetGoalsForNewDay,
 } from "@/lib/goalModel";
 import { buildHistoryDayDetail } from "@/lib/historyDetail";
 import { mergeLinkedinStored } from "@/lib/normalizers/linkedinStoredMerge";
-import { migratePersistedState } from "@/lib/normalizers/migratePersistedState";
 import { computeOverallPercent } from "@/lib/progress";
 
 export { STORAGE_KEY } from "@/lib/storageKeys";
@@ -94,28 +92,19 @@ export function createDefaultState() {
 }
 
 /**
- * Carrega estado do data source local, migra schema antigo e aplica virada de dia.
+ * @deprecated Legacy API. Supabase is the only persisted source; this no longer reads localStorage.
+ * @returns {ReturnType<typeof createDefaultState>}
  */
 export function loadPersistedState() {
-  if (typeof window === "undefined") return createDefaultState();
-  try {
-    const raw = localDataSource.load();
-    if (!raw) return createDefaultState();
-    const parsed = JSON.parse(raw);
-    const merged = migratePersistedState(parsed);
-    return applyDailyRollover(merged);
-  } catch {
-    return createDefaultState();
-  }
+  return createDefaultState();
 }
 
 /**
- * Persiste estado completo (único blob — alinhado a futura sync por utilizador).
- * @param {ReturnType<typeof createDefaultState>} state
+ * @deprecated No-op. Persisted state is written only via Supabase (`persistFullStateRemote`).
+ * @param {ReturnType<typeof createDefaultState>} _state
  */
-export function persistState(state) {
-  if (typeof window === "undefined") return;
-  localDataSource.save(JSON.stringify(state));
+export function persistState(_state) {
+  void _state;
 }
 
 /** @deprecated Use `loadPersistedState` */

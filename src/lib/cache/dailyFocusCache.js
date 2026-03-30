@@ -1,4 +1,10 @@
-/** Local cache for stale-while-revalidate. Supabase remains source of truth. */
+/**
+ * Read-through cache for remote state (per user, timestamped).
+ * Writes only mirror successful remote reads or explicit user saves — never seeds the database.
+ * Supabase is the sole source of truth for persisted data.
+ */
+
+import { STORAGE_KEY as LEGACY_BLOB_KEY } from "@/lib/storageKeys";
 
 const PREFIX = "daily-focus:v1:state:";
 
@@ -53,6 +59,18 @@ export function clearDailyFocusCache(userId) {
   if (typeof window === "undefined" || !userId) return;
   try {
     localStorage.removeItem(keyFor(userId));
+  } catch {
+    /* ignore */
+  }
+}
+
+/**
+ * Removes pre–Supabase-only blob (`daily-focus-state-v1`). Safe after auth; does not touch Supabase session keys.
+ */
+export function clearLegacyAppStorageBlob() {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(LEGACY_BLOB_KEY);
   } catch {
     /* ignore */
   }

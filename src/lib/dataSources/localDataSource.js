@@ -1,5 +1,5 @@
 /**
- * Fonte de dados local — `localStorage` (migração inicial via `remoteAppState`).
+ * @deprecated Unused by the app shell — kept for reference only. Supabase is the data store.
  */
 
 import * as localStorageAdapter from "@/lib/storage/localStorageAdapter";
