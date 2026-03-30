@@ -1,5 +1,5 @@
-import { DashboardApp } from "@/components/dashboard/DashboardApp";
+import { DailyFocusClient } from "@/components/DailyFocusClient";
 
 export default function Home() {
-  return <DashboardApp />;
+  return <DailyFocusClient />;
 }

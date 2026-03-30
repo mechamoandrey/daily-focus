@@ -1,61 +1,53 @@
 /**
- * Metas fixas e subtarefas iniciais.
- * IDs estáveis para persistência e reset diário (apenas `done` é limpo).
+ * Canonical goal structure — used for defaults and migrations.
+ * Subtask `done` is hydrated from localStorage at runtime.
  */
-
 export const INITIAL_GOALS = [
   {
-    id: "goal-en",
+    id: "study-english",
     title: "Estudar inglês todos os dias",
-    description: "Consistência no idioma abre portas e entrevistas em inglês.",
+    description: "Vocabulário, input e output — o combo que aparece em entrevistas.",
     subtasks: [
-      { id: "en-1", title: "Revisar vocabulário", done: false },
-      { id: "en-2", title: "Fazer listening", done: false },
-      { id: "en-3", title: "Fazer speaking ou writing", done: false },
-      { id: "en-4", title: "Estudar uma estrutura gramatical", done: false },
-      { id: "en-5", title: "Registrar o que aprendi", done: false },
+      { id: "study-english-1", label: "Revisar vocabulário" },
+      { id: "study-english-2", label: "Fazer listening" },
+      { id: "study-english-3", label: "Fazer speaking ou writing" },
+      { id: "study-english-4", label: "Estudar uma estrutura gramatical" },
+      { id: "study-english-5", label: "Registrar o que aprendi" },
     ],
   },
   {
-    id: "goal-site",
+    id: "personal-site",
     title: "Fazer parte do meu site todos os dias",
-    description: "Seu site é o cartão de visitas vivo do seu trabalho.",
+    description: "Construir presença online com entregas pequenas e constantes.",
     subtasks: [
-      { id: "site-1", title: "Escolher a seção ou feature do dia", done: false },
-      { id: "site-2", title: "Implementar UI", done: false },
-      { id: "site-3", title: "Ajustar responsividade", done: false },
-      { id: "site-4", title: "Refatorar ou melhorar código", done: false },
-      { id: "site-5", title: "Revisar resultado final", done: false },
+      { id: "personal-site-1", label: "Escolher a seção ou feature do dia" },
+      { id: "personal-site-2", label: "Implementar UI" },
+      { id: "personal-site-3", label: "Ajustar responsividade" },
+      { id: "personal-site-4", label: "Refatorar ou melhorar código" },
+      { id: "personal-site-5", label: "Revisar resultado final" },
     ],
   },
   {
-    id: "goal-portfolio",
+    id: "portfolio-sites",
     title: "Fazer sites para simular portfólio todos os dias",
-    description: "Volume de projetos mostra execução e criterio de entrega.",
+    description: "Projetos demonstráveis que contam história no GitHub.",
     subtasks: [
-      { id: "pf-1", title: "Definir ideia do projeto", done: false },
-      { id: "pf-2", title: "Fazer layout principal", done: false },
-      { id: "pf-3", title: "Implementar seção relevante", done: false },
-      { id: "pf-4", title: "Publicar no GitHub", done: false },
-      { id: "pf-5", title: "Anotar o que virou material de portfólio", done: false },
+      { id: "portfolio-sites-1", label: "Definir ideia do projeto" },
+      { id: "portfolio-sites-2", label: "Fazer layout principal" },
+      { id: "portfolio-sites-3", label: "Implementar seção relevante" },
+      { id: "portfolio-sites-4", label: "Publicar no GitHub" },
+      { id: "portfolio-sites-5", label: "Anotar o que virou material de portfólio" },
     ],
   },
   {
-    id: "goal-forge",
+    id: "forge-ai",
     title: "Tocar meu projeto pessoal Forge AI",
-    description: "Projeto próprio demonstra iniciativa e profundidade técnica.",
+    description: "Avançar o que te diferencia — com clareza e próximos passos.",
     subtasks: [
-      { id: "fg-1", title: "Definir próxima tarefa", done: false },
-      { id: "fg-2", title: "Implementar ou pesquisar", done: false },
-      { id: "fg-3", title: "Validar resultado", done: false },
-      { id: "fg-4", title: "Registrar próximos passos", done: false },
+      { id: "forge-ai-1", label: "Definir próxima tarefa" },
+      { id: "forge-ai-2", label: "Implementar ou pesquisar" },
+      { id: "forge-ai-3", label: "Validar resultado" },
+      { id: "forge-ai-4", label: "Registrar próximos passos" },
     ],
   },
 ];
-
-export function cloneGoals(goals) {
-  return goals.map((g) => ({
-    ...g,
-    subtasks: g.subtasks.map((s) => ({ ...s })),
-  }));
-}
