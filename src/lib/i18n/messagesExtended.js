@@ -1,4 +1,3 @@
-/** Extended dictionary — merged in messages.js */
 export const extendedMessages = {
   pt: {
     "weekday.long.mon": "Segunda-feira",
@@ -21,8 +20,7 @@ export const extendedMessages = {
     "dayPerf.critical": "Crítica",
     "dashboard.dailyProgressTitle": "Progresso do dia",
     "dashboard.dayCompleteBadge": "Dia completo",
-    "dashboard.subtasksProgressLine":
-      "{subDone} de {subTotal} subtarefas · {goalsComplete} de {goalsTotal} metas 100% no dia",
+    "dashboard.subtasksProgressLine": "{subDone} de {subTotal} subtarefas · {goalsComplete} de {goalsTotal} metas 100% no dia",
     "dashboard.subtasksLabel": "Subtarefas",
     "dashboard.goalsClosedLabel": "Metas fechadas",
     "dashboard.executionBar": "Execução",
@@ -38,10 +36,8 @@ export const extendedMessages = {
     "linkedin.checklistLabel": "Passos do post",
     "goalCard.checklist": "Checklist",
     "heatmap.title": "Mapa de consistência",
-    "heatmap.hintGoalFilter":
-      "Cores da meta selecionada · dias sem a meta ficam apagados",
-    "heatmap.hintDefault":
-      "Passe o cursor para ver o dia · clique para abrir o detalhe",
+    "heatmap.hintGoalFilter": "Cores da meta selecionada · dias sem a meta ficam apagados",
+    "heatmap.hintDefault": "Passe o cursor para ver o dia · clique para abrir o detalhe",
     "heatmap.legend.full": "Verde — dia completo (100%)",
     "heatmap.legend.good": "Azul/roxo — bom (70–99%)",
     "heatmap.legend.partial": "Âmbar — parcial (30–69%)",
@@ -66,15 +62,11 @@ export const extendedMessages = {
     "heatmap.tooltipSubs": "Subtarefas:",
     "dayModal.title": "Dia no histórico",
     "dayModal.progressLabel": "Progresso geral:",
-    "dayModal.legacyNarrative":
-      "Registro antigo — só há o progresso geral ({p}%).",
+    "dayModal.legacyNarrative": "Registro antigo — só há o progresso geral ({p}%).",
     "dayModal.narrativeStrong": "Dia forte — {gc} de {gt} metas concluídas.",
-    "dayModal.narrativeWorst":
-      "Progresso {p}% — {gc} de {gt} metas fechadas. Atenção em “{title}”.",
-    "dayModal.narrativeDefault":
-      "Progresso {p}% — {gc} de {gt} metas concluídas neste dia.",
-    "dayDetail.legacy":
-      "Este registro é antigo — só há o percentual do dia. Novos fechamentos passam a guardar metas e subtarefas.",
+    "dayModal.narrativeWorst": "Progresso {p}% — {gc} de {gt} metas fechadas. Atenção em “{title}”.",
+    "dayModal.narrativeDefault": "Progresso {p}% — {gc} de {gt} metas concluídas neste dia.",
+    "dayDetail.legacy": "Este registro é antigo — só há o percentual do dia. Novos fechamentos passam a guardar metas e subtarefas.",
     "dayDetail.subtasks": "Subtarefas:",
     "dayDetail.goalsDone": "Metas:",
     "dayDetail.goalsDoneSuffix": "concluídas",
@@ -99,14 +91,12 @@ export const extendedMessages = {
     "history.interpret.consistency.high": "Você costuma manter um bom nível.",
     "history.interpret.consistency.mid": "Metade do caminho para constância.",
     "history.interpret.consistency.low": "Constância ainda em construção.",
-    "history.interpret.trend.insufficient":
-      "Precisamos de mais dias para comparar semanas.",
+    "history.interpret.trend.insufficient": "Precisamos de mais dias para comparar semanas.",
     "history.interpret.trend.up": "Você está em trajetória de melhora.",
     "history.interpret.trend.down": "Um ajuste de foco pode virar o jogo.",
     "history.interpret.trend.stable": "Ritmo parecido com a semana anterior.",
     "history.metaStrengthTitle": "Força por meta",
-    "history.metaStrengthSub":
-      "Taxa de dias em que a meta fechou 100% (só conta quando ela apareceu)",
+    "history.metaStrengthSub": "Taxa de dias em que a meta fechou 100% (só conta quando ela apareceu)",
     "history.bestRate": "melhor taxa",
     "history.needsAttention": "precisa atenção",
     "history.compare7": "Comparar janelas (7)",
@@ -120,8 +110,7 @@ export const extendedMessages = {
     "history.bestPrefix": "Melhor:",
     "history.worstPrefix": "Pior:",
     "history.weeksAvgTitle": "Semanas (média de progresso)",
-    "history.weeksAvgLine":
-      "Melhor semana ~{bestLabel} ({bestPct}%) · Pior ~{worstLabel} ({worstPct}%)",
+    "history.weeksAvgLine": "Melhor semana ~{bestLabel} ({bestPct}%) · Pior ~{worstLabel} ({worstPct}%)",
     "history.weekdayPaceTitle": "Ritmo por dia da semana",
     "history.rankStable": "Meta mais estável",
     "history.rankEscapes": "Meta que mais escapa",
@@ -157,8 +146,7 @@ export const extendedMessages = {
     "history.kpi.performanceRead.title": "Como você está indo",
     "history.kpi.performanceRead.human": "Leitura da média de 7 dias",
     "history.kpi.performanceRead.scale": "Escala: {n}% na média",
-    "history.kpi.performanceRead.hint":
-      "Este rótulo resume seu ritmo recente em uma palavra.",
+    "history.kpi.performanceRead.hint": "Este rótulo resume seu ritmo recente em uma palavra.",
     "history.kpi.weekVsWeek.title": "Última semana vs anterior",
     "history.kpi.weekVsWeek.human": "Para onde o ritmo está indo",
     "history.kpi.weekVsWeek.needData": "Precisa de 7 dias + 7 dias anteriores",
@@ -168,20 +156,15 @@ export const extendedMessages = {
     "history.trendLabel.stable": "Estável",
     "history.kpi.fullDayCount.title": "Dias completos (quantidade)",
     "history.kpi.fullDayCount.human": "Quantas vezes fechou 100%",
-    "history.kpi.fullDayCount.interpret":
-      "Cada dia conta quando todo o progresso do dia foi feito.",
+    "history.kpi.fullDayCount.interpret": "Cada dia conta quando todo o progresso do dia foi feito.",
     "history.kpi.totalDays.title": "Histórico salvo",
     "history.kpi.totalDays.human": "Total de dias registrados",
-    "history.kpi.totalDays.interpret":
-      "Quanto mais dias, mais confiáveis ficam as médias.",
+    "history.kpi.totalDays.interpret": "Quanto mais dias, mais confiáveis ficam as médias.",
     "history.weekPerspective": "Semana em perspectiva",
-    "history.weekBetterLine":
-      "Você costuma ir melhor às {day} (média {n}%).",
-    "history.weekWeakerLine":
-      "O dia em que mais costuma faltar energia é {day} ({n}% em média).",
+    "history.weekBetterLine": "Você costuma ir melhor às {day} (média {n}%).",
+    "history.weekWeakerLine": "O dia em que mais costuma faltar energia é {day} ({n}% em média).",
     "history.subtasksSection": "Subtarefas",
-    "history.subtasksHint":
-      "Onde cada subtarefa costuma travar (só dias com detalhe salvo)",
+    "history.subtasksHint": "Onde cada subtarefa costuma travar (só dias com detalhe salvo)",
     "history.table.goal": "Meta",
     "history.table.subtask": "Subtarefa",
     "history.table.times": "Vezes",
@@ -193,25 +176,20 @@ export const extendedMessages = {
     "history.table.failRate": "Taxa falha",
     "history.table.avgPct": "Média %",
     "history.yourDays": "Seus dias",
-    "history.yourDaysHint":
-      "Toque para expandir e ver metas e subtarefas daquele dia",
-    "history.emptyDays":
-      "Ainda não há dias arquivados. Ao virar a data, o resumo aparece aqui.",
-    "history.footerNote":
-      "Dados na tua conta · registros antigos podem não ter detalhe por meta",
+    "history.yourDaysHint": "Toque para expandir e ver metas e subtarefas daquele dia",
+    "history.emptyDays": "Ainda não há dias arquivados. Ao virar a data, o resumo aparece aqui.",
+    "history.footerNote": "Dados na tua conta · registros antigos podem não ter detalhe por meta",
     "history.dayList.subtasks": "subtarefas",
     "ui.close": "Fechar",
     "goalModal.title": "Meta no período filtrado",
-    "goalModal.statsLine":
-      "Aparições: {appearances} · Taxa de fechamento: {rate}% · Média de progresso: {avg}%",
+    "goalModal.statsLine": "Aparições: {appearances} · Taxa de fechamento: {rate}% · Média de progresso: {avg}%",
     "goalModal.last100": "Última vez 100%:",
     "goalModal.lastOpen": "Última vez sem fechar:",
     "goalModal.recent": "Últimas aparições",
     "goalModal.statusOk": "ok",
     "goalModal.statusOpen": "aberto",
     "panel.recentTitle": "Histórico recente",
-    "panel.recentSub":
-      "Tudo fica salvo na conta · dias arquivados ao virar a data",
+    "panel.recentSub": "Tudo fica salvo na conta · dias arquivados ao virar a data",
     "panel.empty": "Quando os dias fecharem, você verá percentual e se bateu 100%.",
     "goals.defaultTitle": "Nova meta",
     "goals.defaultSubtask": "Subtarefa",
@@ -236,10 +214,8 @@ export const extendedMessages = {
     "goals.form.cancel": "Cancelar",
     "goals.form.save": "Salvar meta",
     "goals.deleteConfirm": "Excluir a meta “{title}”? Isso não pode ser desfeito.",
-    "goals.intro":
-      "Ajuste título, descrição e checklist. O que estiver visível entra no dashboard nos dias marcados.",
-    "goals.emptyUser":
-      "Você ainda não criou metas próprias — as metas iniciais seguem no dashboard. Toque em \"Nova meta\" para adicionar uma.",
+    "goals.intro": "Ajuste título, descrição e checklist. O que estiver visível entra no dashboard nos dias marcados.",
+    "goals.emptyUser": "Você ainda não criou metas próprias — as metas iniciais seguem no dashboard. Toque em \"Nova meta\" para adicionar uma.",
     "goals.reload": "Recarregar página",
     "goals.toast.saved": "Alterações salvas neste dispositivo.",
     "goals.toast.error": "Não foi possível salvar — tente de novo.",
@@ -248,147 +224,96 @@ export const extendedMessages = {
     "goals.validation.title": "Informe um título para a meta.",
     "goals.validation.subtasks": "Adicione pelo menos uma subtarefa.",
     "linkedin.meta.title": "Post no LinkedIn (sexta)",
-    "linkedin.meta.description":
-      "Rotina semanal de presença profissional: tema forte, texto revisado e engajamento logo após publicar.",
+    "linkedin.meta.description": "Rotina semanal de presença profissional: tema forte, texto revisado e engajamento logo após publicar.",
     "linkedin.sub.li-1.label": "Definir tema ou insight da semana",
-    "linkedin.sub.li-1.hint":
-      "O que você aprendeu, entregou ou mudou de ideia — algo específico que outra pessoa possa copiar ou questionar.",
+    "linkedin.sub.li-1.hint": "O que você aprendeu, entregou ou mudou de ideia — algo específico que outra pessoa possa copiar ou questionar.",
     "linkedin.sub.li-2.label": "Esboçar gancho e estrutura",
-    "linkedin.sub.li-2.hint":
-      "Linha 1 com tensão ou promessa; depois contexto → insight → exemplo → pergunta ou CTA leve.",
+    "linkedin.sub.li-2.hint": "Linha 1 com tensão ou promessa; depois contexto → insight → exemplo → pergunta ou CTA leve.",
     "linkedin.sub.li-3.label": "Escrever o corpo com exemplo concreto",
-    "linkedin.sub.li-3.hint":
-      "Número, antes/depois, trecho de código, print ou mini-case — prova de que não é texto vazio.",
+    "linkedin.sub.li-3.hint": "Número, antes/depois, trecho de código, print ou mini-case — prova de que não é texto vazio.",
     "linkedin.sub.li-4.label": "Revisar tom, clareza e CTA",
-    "linkedin.sub.li-4.hint":
-      "Ler em voz alta; cortar adjetivos; garantir uma linha que peça comentário (dúvida ou opinião).",
+    "linkedin.sub.li-4.hint": "Ler em voz alta; cortar adjetivos; garantir uma linha que peça comentário (dúvida ou opinião).",
     "linkedin.sub.li-5.label": "Formato e publicação",
-    "linkedin.sub.li-5.hint":
-      "Texto, bullets ou carrossel; hashtag só se fizer sentido; publicar no horário em que você costuma estar online.",
+    "linkedin.sub.li-5.hint": "Texto, bullets ou carrossel; hashtag só se fizer sentido; publicar no horário em que você costuma estar online.",
     "linkedin.sub.li-6.label": "Primeiros 60–90 min pós-post",
-    "linkedin.sub.li-6.hint":
-      "Responder comentários, reagir a respostas e comentar de forma útil em 2–3 posts da sua área.",
+    "linkedin.sub.li-6.hint": "Responder comentários, reagir a respostas e comentar de forma útil em 2–3 posts da sua área.",
     "systemGoal.study-english.title": "Estudar inglês todos os dias",
-    "systemGoal.study-english.description":
-      "Vocabulário, input e output — o combo que aparece em entrevistas.",
+    "systemGoal.study-english.description": "Vocabulário, input e output — o combo que aparece em entrevistas.",
     "systemGoal.study-english.sub.study-english-1": "Revisar vocabulário",
     "systemGoal.study-english.sub.study-english-2": "Fazer listening",
     "systemGoal.study-english.sub.study-english-3": "Fazer speaking ou writing",
     "systemGoal.study-english.sub.study-english-4": "Estudar uma estrutura gramatical",
     "systemGoal.study-english.sub.study-english-5": "Registrar o que aprendi",
     "systemGoal.personal-site.title": "Fazer parte do meu site todos os dias",
-    "systemGoal.personal-site.description":
-      "Construir presença online com entregas pequenas e constantes.",
+    "systemGoal.personal-site.description": "Construir presença online com entregas pequenas e constantes.",
     "systemGoal.personal-site.sub.personal-site-1": "Escolher a seção ou feature do dia",
     "systemGoal.personal-site.sub.personal-site-2": "Implementar UI",
     "systemGoal.personal-site.sub.personal-site-3": "Ajustar responsividade",
     "systemGoal.personal-site.sub.personal-site-4": "Refatorar ou melhorar código",
     "systemGoal.personal-site.sub.personal-site-5": "Revisar resultado final",
     "systemGoal.portfolio-sites.title": "Fazer sites para simular portfólio todos os dias",
-    "systemGoal.portfolio-sites.description":
-      "Projetos demonstráveis que contam história no GitHub.",
+    "systemGoal.portfolio-sites.description": "Projetos demonstráveis que contam história no GitHub.",
     "systemGoal.portfolio-sites.sub.portfolio-sites-1": "Definir ideia do projeto",
     "systemGoal.portfolio-sites.sub.portfolio-sites-2": "Fazer layout principal",
     "systemGoal.portfolio-sites.sub.portfolio-sites-3": "Implementar seção relevante",
     "systemGoal.portfolio-sites.sub.portfolio-sites-4": "Publicar no GitHub",
-    "systemGoal.portfolio-sites.sub.portfolio-sites-5":
-      "Anotar o que virou material de portfólio",
+    "systemGoal.portfolio-sites.sub.portfolio-sites-5": "Anotar o que virou material de portfólio",
     "systemGoal.forge-ai.title": "Tocar meu projeto pessoal Forge AI",
-    "systemGoal.forge-ai.description":
-      "Avançar o que te diferencia — com clareza e próximos passos.",
+    "systemGoal.forge-ai.description": "Avançar o que te diferencia — com clareza e próximos passos.",
     "systemGoal.forge-ai.sub.forge-ai-1": "Definir próxima tarefa",
     "systemGoal.forge-ai.sub.forge-ai-2": "Implementar ou pesquisar",
     "systemGoal.forge-ai.sub.forge-ai-3": "Validar resultado",
     "systemGoal.forge-ai.sub.forge-ai-4": "Registrar próximos passos",
-    "history.narrative.empty":
-      "Registre dias no dashboard para ver padrões aqui.",
-    "history.narrative.paceBand":
-      "Seu ritmo recente está na faixa “{label}” ({avg7}% em média nos últimos registros).",
-    "history.narrative.trendUp":
-      "Você está performando melhor do que na janela anterior ({last}% vs {prev}%).",
-    "history.narrative.trendDown":
-      "O ritmo caiu em relação ao bloco anterior ({last}% vs {prev}%).",
-    "history.narrative.trend30":
-      "Na comparação de 30 registros: {last}% frente a {prev}% antes.",
-    "history.narrative.strongest":
-      "Seu maior ponto forte é “{title}” ({rate}% de dias fechados).",
-    "history.narrative.neglected":
-      "“{title}” é a meta que mais escapa ({rate}% dos dias em que apareceu sem 100%).",
+    "history.narrative.empty": "Registre dias no dashboard para ver padrões aqui.",
+    "history.narrative.paceBand": "Seu ritmo recente está na faixa “{label}” ({avg7}% em média nos últimos registros).",
+    "history.narrative.trendUp": "Você está performando melhor do que na janela anterior ({last}% vs {prev}%).",
+    "history.narrative.trendDown": "O ritmo caiu em relação ao bloco anterior ({last}% vs {prev}%).",
+    "history.narrative.trend30": "Na comparação de 30 registros: {last}% frente a {prev}% antes.",
+    "history.narrative.strongest": "Seu maior ponto forte é “{title}” ({rate}% de dias fechados).",
+    "history.narrative.neglected": "“{title}” é a meta que mais escapa ({rate}% dos dias em que apareceu sem 100%).",
     "history.narrative.weakDay": "Seu dia mais fraco em média é {day}.",
     "history.narrative.strongDay": "Seu dia mais forte em média é {day}.",
-    "history.narrative.bottleneck":
-      "Onde você mais trava: “{label}” ({goal}) — {rate}% de conclusão quando aparece.",
+    "history.narrative.bottleneck": "Onde você mais trava: “{label}” ({goal}) — {rate}% de conclusão quando aparece.",
     "history.narrative.streak": "Sequência atual de dias completos: {n}.",
-    "history.narrative.consistencyGood":
-      "Em {pct}% dos dias você manteve um bom ritmo (≥80%).",
-    "history.narrative.alertLowClose":
-      "“{title}” pede atenção: taxa de fechamento baixa no período.",
+    "history.narrative.consistencyGood": "Em {pct}% dos dias você manteve um bom ritmo (≥80%).",
+    "history.narrative.alertLowClose": "“{title}” pede atenção: taxa de fechamento baixa no período.",
     "history.narrative.alertTrendDown": "Queda recente de ritmo — vale revisar uma meta por vez.",
     "history.narrative.positiveTrend": "Tendência de melhora na última semana de registros.",
     "analytics.insight.noHistory": "Ainda não há dias registrados no histórico.",
-    "analytics.insight.consistencyGeneral":
-      "Sua consistência geral (dias ≥80%) é {pct}%.",
-    "analytics.insight.recentPerformance":
-      "Classificação recente (média 7 dias): {label} ({avg7}%).",
-    "analytics.insight.noGoalDetail":
-      "Registros antigos não têm detalhe por meta — novos fechamentos alimentam análises por meta e subtarefa.",
-    "analytics.insight.mostConsistent":
-      "Sua meta mais consistente é “{title}” com {rate}% de conclusão (dias em que apareceu).",
-    "analytics.insight.mostNeglected":
-      "Você tem mais dificuldade com “{title}” — apenas {rate}% de sucesso nos dias em que essa meta esteve ativa.",
-    "analytics.insight.trendUp":
-      "Seu desempenho melhorou nos últimos 7 dias ({last7}% vs {prev7}% nos 7 anteriores).",
-    "analytics.insight.trendDown":
-      "Seu desempenho caiu nos últimos 7 dias ({last7}% vs {prev7}% nos 7 anteriores).",
-    "analytics.insight.trendStable":
-      "Últimos 7 dias estáveis em relação aos 7 anteriores ({last7}% vs {prev7}%).",
-    "analytics.insight.weekdayBest":
-      "Melhor média histórica: {day} ({avg}%).",
-    "analytics.insight.weekdayWorst":
-      "Menor média histórica: {day} ({avg}%).",
-    "analytics.insight.mostIgnoredSubtask":
-      "Subtarefa mais ignorada: “{label}” ({goalTitle}) — {rate}% de conclusão quando aparece.",
-    "analytics.insight.fullDayRate":
-      "{pct}% dos dias registrados fecharam em 100%.",
+    "analytics.insight.consistencyGeneral": "Sua consistência geral (dias ≥80%) é {pct}%.",
+    "analytics.insight.recentPerformance": "Classificação recente (média 7 dias): {label} ({avg7}%).",
+    "analytics.insight.noGoalDetail": "Registros antigos não têm detalhe por meta — novos fechamentos alimentam análises por meta e subtarefa.",
+    "analytics.insight.mostConsistent": "Sua meta mais consistente é “{title}” com {rate}% de conclusão (dias em que apareceu).",
+    "analytics.insight.mostNeglected": "Você tem mais dificuldade com “{title}” — apenas {rate}% de sucesso nos dias em que essa meta esteve ativa.",
+    "analytics.insight.trendUp": "Seu desempenho melhorou nos últimos 7 dias ({last7}% vs {prev7}% nos 7 anteriores).",
+    "analytics.insight.trendDown": "Seu desempenho caiu nos últimos 7 dias ({last7}% vs {prev7}% nos 7 anteriores).",
+    "analytics.insight.trendStable": "Últimos 7 dias estáveis em relação aos 7 anteriores ({last7}% vs {prev7}%).",
+    "analytics.insight.weekdayBest": "Melhor média histórica: {day} ({avg}%).",
+    "analytics.insight.weekdayWorst": "Menor média histórica: {day} ({avg}%).",
+    "analytics.insight.mostIgnoredSubtask": "Subtarefa mais ignorada: “{label}” ({goalTitle}) — {rate}% de conclusão quando aparece.",
+    "analytics.insight.fullDayRate": "{pct}% dos dias registrados fecharam em 100%.",
     "analytics.momentum.90": "excelente — ritmo muito forte",
     "analytics.momentum.70": "bom — ritmo firme",
     "analytics.momentum.50": "moderado — dá para subir um degrau",
     "analytics.momentum.30": "baixo — vale revisar prioridades",
     "analytics.momentum.0": "crítico — um passo de cada vez já ajuda",
-    "analytics.behavior.empty1":
-      "Quando você fechar dias, este painel mostra padrões de ritmo e consistência.",
-    "analytics.behavior.empty2":
-      "Use o dashboard com frequência para o histórico refletir o seu dia a dia.",
-    "analytics.behavior.empty3":
-      "Volte após alguns dias registrados para ver tendências com mais clareza.",
-    "analytics.behavior.momentumLine":
-      "Nos últimos dias, seu ritmo está {phrase} ({avg7}% em média).",
-    "analytics.behavior.trendUp":
-      "Você melhorou frente à semana anterior: média de {prev7}% para {last7}%.",
-    "analytics.behavior.trendDown":
-      "O ritmo caiu um pouco frente à semana anterior ({last7}% vs {prev7}%).",
-    "analytics.behavior.mostConsistent":
-      "A meta em que você mais acerta é “{title}”.",
-    "analytics.behavior.mostNeglected":
-      "Onde mais costuma faltar fechar é “{title}”.",
-    "analytics.behavior.weakDay":
-      "{day} costuma ser o dia em que você menos rende.",
-    "analytics.behavior.consistencyGood":
-      "Em {pct}% dos dias você manteve um bom nível (80% ou mais de progresso).",
-    "analytics.behavior.fullDayRate":
-      "Em {pct}% dos dias registrados você completou todas as metas visíveis.",
-    "analytics.behavior.fallbackDays":
-      "Você tem {totalDays} dia(s) no histórico — quanto mais dias, mais clara fica a tendência.",
-    "analytics.behavior.fallbackOpenDay":
-      "Abra cada dia na lista abaixo para revisar metas e subtarefas daquele momento.",
-    "analytics.behavior.fallbackFocus":
-      "Use estas leituras para decidir onde reforçar o foco na próxima semana.",
-    "analytics.behavior.reinforcementStreak":
-      "Boa sequência: {n} dia(s) completos seguidos no histórico.",
-    "analytics.behavior.reinforcementUp":
-      "Seu desempenho recente melhorou — continue nesse ritmo.",
-    "analytics.behavior.reinforcementHabit":
-      "Você já registrou vários dias de execução completa — ótimo hábito.",
+    "analytics.behavior.empty1": "Quando você fechar dias, este painel mostra padrões de ritmo e consistência.",
+    "analytics.behavior.empty2": "Use o dashboard com frequência para o histórico refletir o seu dia a dia.",
+    "analytics.behavior.empty3": "Volte após alguns dias registrados para ver tendências com mais clareza.",
+    "analytics.behavior.momentumLine": "Nos últimos dias, seu ritmo está {phrase} ({avg7}% em média).",
+    "analytics.behavior.trendUp": "Você melhorou frente à semana anterior: média de {prev7}% para {last7}%.",
+    "analytics.behavior.trendDown": "O ritmo caiu um pouco frente à semana anterior ({last7}% vs {prev7}%).",
+    "analytics.behavior.mostConsistent": "A meta em que você mais acerta é “{title}”.",
+    "analytics.behavior.mostNeglected": "Onde mais costuma faltar fechar é “{title}”.",
+    "analytics.behavior.weakDay": "{day} costuma ser o dia em que você menos rende.",
+    "analytics.behavior.consistencyGood": "Em {pct}% dos dias você manteve um bom nível (80% ou mais de progresso).",
+    "analytics.behavior.fullDayRate": "Em {pct}% dos dias registrados você completou todas as metas visíveis.",
+    "analytics.behavior.fallbackDays": "Você tem {totalDays} dia(s) no histórico — quanto mais dias, mais clara fica a tendência.",
+    "analytics.behavior.fallbackOpenDay": "Abra cada dia na lista abaixo para revisar metas e subtarefas daquele momento.",
+    "analytics.behavior.fallbackFocus": "Use estas leituras para decidir onde reforçar o foco na próxima semana.",
+    "analytics.behavior.reinforcementStreak": "Boa sequência: {n} dia(s) completos seguidos no histórico.",
+    "analytics.behavior.reinforcementUp": "Seu desempenho recente melhorou — continue nesse ritmo.",
+    "analytics.behavior.reinforcementHabit": "Você já registrou vários dias de execução completa — ótimo hábito."
   },
   en: {
     "weekday.long.mon": "Monday",
@@ -411,8 +336,7 @@ export const extendedMessages = {
     "dayPerf.critical": "Critical",
     "dashboard.dailyProgressTitle": "Today’s progress",
     "dashboard.dayCompleteBadge": "Full day",
-    "dashboard.subtasksProgressLine":
-      "{subDone} of {subTotal} subtasks · {goalsComplete} of {goalsTotal} goals at 100% today",
+    "dashboard.subtasksProgressLine": "{subDone} of {subTotal} subtasks · {goalsComplete} of {goalsTotal} goals at 100% today",
     "dashboard.subtasksLabel": "Subtasks",
     "dashboard.goalsClosedLabel": "Goals closed",
     "dashboard.executionBar": "Execution",
@@ -428,8 +352,7 @@ export const extendedMessages = {
     "linkedin.checklistLabel": "Post steps",
     "goalCard.checklist": "Checklist",
     "heatmap.title": "Consistency map",
-    "heatmap.hintGoalFilter":
-      "Colors for the selected goal · days without the goal are dimmed",
+    "heatmap.hintGoalFilter": "Colors for the selected goal · days without the goal are dimmed",
     "heatmap.hintDefault": "Hover to see the day · click to open detail",
     "heatmap.legend.full": "Green — full day (100%)",
     "heatmap.legend.good": "Indigo — strong (70–99%)",
@@ -455,15 +378,11 @@ export const extendedMessages = {
     "heatmap.tooltipSubs": "Subtasks:",
     "dayModal.title": "Day in history",
     "dayModal.progressLabel": "Overall progress:",
-    "dayModal.legacyNarrative":
-      "Legacy entry — only overall progress is stored ({p}%).",
+    "dayModal.legacyNarrative": "Legacy entry — only overall progress is stored ({p}%).",
     "dayModal.narrativeStrong": "Strong day — {gc} of {gt} goals completed.",
-    "dayModal.narrativeWorst":
-      "Progress {p}% — {gc} of {gt} goals closed. Watch “{title}”.",
-    "dayModal.narrativeDefault":
-      "Progress {p}% — {gc} of {gt} goals completed that day.",
-    "dayDetail.legacy":
-      "This entry is legacy — only the day’s percentage is stored. New saves include goals and subtasks.",
+    "dayModal.narrativeWorst": "Progress {p}% — {gc} of {gt} goals closed. Watch “{title}”.",
+    "dayModal.narrativeDefault": "Progress {p}% — {gc} of {gt} goals completed that day.",
+    "dayDetail.legacy": "This entry is legacy — only the day’s percentage is stored. New saves include goals and subtasks.",
     "dayDetail.subtasks": "Subtasks:",
     "dayDetail.goalsDone": "Goals:",
     "dayDetail.goalsDoneSuffix": "completed",
@@ -493,8 +412,7 @@ export const extendedMessages = {
     "history.interpret.trend.down": "A focus tweak can turn things around.",
     "history.interpret.trend.stable": "Similar pace to the previous week.",
     "history.metaStrengthTitle": "Strength by goal",
-    "history.metaStrengthSub":
-      "Share of days the goal closed at 100% (only when it appeared)",
+    "history.metaStrengthSub": "Share of days the goal closed at 100% (only when it appeared)",
     "history.bestRate": "best rate",
     "history.needsAttention": "needs attention",
     "history.compare7": "Compare windows (7)",
@@ -508,8 +426,7 @@ export const extendedMessages = {
     "history.bestPrefix": "Best:",
     "history.worstPrefix": "Worst:",
     "history.weeksAvgTitle": "Weeks (average progress)",
-    "history.weeksAvgLine":
-      "Best week ~{bestLabel} ({bestPct}%) · Worst ~{worstLabel} ({worstPct}%)",
+    "history.weeksAvgLine": "Best week ~{bestLabel} ({bestPct}%) · Worst ~{worstLabel} ({worstPct}%)",
     "history.weekdayPaceTitle": "Pace by weekday",
     "history.rankStable": "Most stable goal",
     "history.rankEscapes": "Goal that slips most",
@@ -545,8 +462,7 @@ export const extendedMessages = {
     "history.kpi.performanceRead.title": "How you’re doing",
     "history.kpi.performanceRead.human": "Reading the 7-day average",
     "history.kpi.performanceRead.scale": "Scale: {n}% on average",
-    "history.kpi.performanceRead.hint":
-      "This label sums up your recent pace in one word.",
+    "history.kpi.performanceRead.hint": "This label sums up your recent pace in one word.",
     "history.kpi.weekVsWeek.title": "Last week vs previous",
     "history.kpi.weekVsWeek.human": "Where momentum is heading",
     "history.kpi.weekVsWeek.needData": "Needs 7 days + prior 7 days",
@@ -556,18 +472,15 @@ export const extendedMessages = {
     "history.trendLabel.stable": "Stable",
     "history.kpi.fullDayCount.title": "Full days (count)",
     "history.kpi.fullDayCount.human": "Times you hit 100%",
-    "history.kpi.fullDayCount.interpret":
-      "Each day counts when everything planned for the day was done.",
+    "history.kpi.fullDayCount.interpret": "Each day counts when everything planned for the day was done.",
     "history.kpi.totalDays.title": "Saved history",
     "history.kpi.totalDays.human": "Total days logged",
     "history.kpi.totalDays.interpret": "More days make averages more reliable.",
     "history.weekPerspective": "Week in perspective",
     "history.weekBetterLine": "You usually do best on {day} (avg {n}%).",
-    "history.weekWeakerLine":
-      "The day you usually struggle most is {day} ({n}% on average).",
+    "history.weekWeakerLine": "The day you usually struggle most is {day} ({n}% on average).",
     "history.subtasksSection": "Subtasks",
-    "history.subtasksHint":
-      "Where each subtask tends to stall (days with saved detail only)",
+    "history.subtasksHint": "Where each subtask tends to stall (days with saved detail only)",
     "history.table.goal": "Goal",
     "history.table.subtask": "Subtask",
     "history.table.times": "Times",
@@ -580,15 +493,12 @@ export const extendedMessages = {
     "history.table.avgPct": "Avg %",
     "history.yourDays": "Your days",
     "history.yourDaysHint": "Tap to expand and see goals and subtasks for that day",
-    "history.emptyDays":
-      "No archived days yet. After the date rolls over, the summary appears here.",
-    "history.footerNote":
-      "Data in your account · older entries may not include per-goal detail",
+    "history.emptyDays": "No archived days yet. After the date rolls over, the summary appears here.",
+    "history.footerNote": "Data in your account · older entries may not include per-goal detail",
     "history.dayList.subtasks": "subtasks",
     "ui.close": "Close",
     "goalModal.title": "Goal in filtered period",
-    "goalModal.statsLine":
-      "Appearances: {appearances} · Close rate: {rate}% · Avg progress: {avg}%",
+    "goalModal.statsLine": "Appearances: {appearances} · Close rate: {rate}% · Avg progress: {avg}%",
     "goalModal.last100": "Last time at 100%:",
     "goalModal.lastOpen": "Last time not closed:",
     "goalModal.recent": "Recent appearances",
@@ -620,10 +530,8 @@ export const extendedMessages = {
     "goals.form.cancel": "Cancel",
     "goals.form.save": "Save goal",
     "goals.deleteConfirm": "Delete goal “{title}”? This cannot be undone.",
-    "goals.intro":
-      "Adjust title, description, and checklist. Whatever is visible counts toward the dashboard on selected days.",
-    "goals.emptyUser":
-      "You haven’t created your own goals yet — the starter goals stay on the dashboard. Tap \"New goal\" to add one.",
+    "goals.intro": "Adjust title, description, and checklist. Whatever is visible counts toward the dashboard on selected days.",
+    "goals.emptyUser": "You haven’t created your own goals yet — the starter goals stay on the dashboard. Tap \"New goal\" to add one.",
     "goals.reload": "Reload page",
     "goals.toast.saved": "Changes saved on this device.",
     "goals.toast.error": "Couldn’t save — try again.",
@@ -632,145 +540,95 @@ export const extendedMessages = {
     "goals.validation.title": "Enter a title for the goal.",
     "goals.validation.subtasks": "Add at least one subtask.",
     "linkedin.meta.title": "LinkedIn post (Friday)",
-    "linkedin.meta.description":
-      "Weekly professional presence: strong topic, polished copy, and engagement right after posting.",
+    "linkedin.meta.description": "Weekly professional presence: strong topic, polished copy, and engagement right after posting.",
     "linkedin.sub.li-1.label": "Pick the week’s theme or insight",
-    "linkedin.sub.li-1.hint":
-      "What you learned, shipped, or changed your mind about — something specific others can reuse or debate.",
+    "linkedin.sub.li-1.hint": "What you learned, shipped, or changed your mind about — something specific others can reuse or debate.",
     "linkedin.sub.li-2.label": "Draft hook and structure",
-    "linkedin.sub.li-2.hint":
-      "Line 1 with tension or promise; then context → insight → example → light question or CTA.",
+    "linkedin.sub.li-2.hint": "Line 1 with tension or promise; then context → insight → example → light question or CTA.",
     "linkedin.sub.li-3.label": "Write the body with a concrete example",
-    "linkedin.sub.li-3.hint":
-      "Numbers, before/after, code snippet, screenshot, or mini-case — proof it’s not empty text.",
+    "linkedin.sub.li-3.hint": "Numbers, before/after, code snippet, screenshot, or mini-case — proof it’s not empty text.",
     "linkedin.sub.li-4.label": "Review tone, clarity, and CTA",
-    "linkedin.sub.li-4.hint":
-      "Read aloud; cut adjectives; ensure one line invites a comment (question or opinion).",
+    "linkedin.sub.li-4.hint": "Read aloud; cut adjectives; ensure one line invites a comment (question or opinion).",
     "linkedin.sub.li-5.label": "Format and publish",
-    "linkedin.sub.li-5.hint":
-      "Text, bullets, or carousel; hashtags only if they help; post when you’re usually online.",
+    "linkedin.sub.li-5.hint": "Text, bullets, or carousel; hashtags only if they help; post when you’re usually online.",
     "linkedin.sub.li-6.label": "First 60–90 minutes after posting",
-    "linkedin.sub.li-6.hint":
-      "Reply to comments, react to replies, and add useful comments on 2–3 posts in your space.",
+    "linkedin.sub.li-6.hint": "Reply to comments, react to replies, and add useful comments on 2–3 posts in your space.",
     "systemGoal.study-english.title": "Study English every day",
-    "systemGoal.study-english.description":
-      "Vocabulary, input, and output — the combo that shows up in interviews.",
+    "systemGoal.study-english.description": "Vocabulary, input, and output — the combo that shows up in interviews.",
     "systemGoal.study-english.sub.study-english-1": "Review vocabulary",
     "systemGoal.study-english.sub.study-english-2": "Do listening",
     "systemGoal.study-english.sub.study-english-3": "Do speaking or writing",
     "systemGoal.study-english.sub.study-english-4": "Study one grammar structure",
     "systemGoal.study-english.sub.study-english-5": "Log what you learned",
     "systemGoal.personal-site.title": "Work on my site every day",
-    "systemGoal.personal-site.description":
-      "Build an online presence with small, steady deliveries.",
+    "systemGoal.personal-site.description": "Build an online presence with small, steady deliveries.",
     "systemGoal.personal-site.sub.personal-site-1": "Pick today’s section or feature",
     "systemGoal.personal-site.sub.personal-site-2": "Implement UI",
     "systemGoal.personal-site.sub.personal-site-3": "Tweak responsiveness",
     "systemGoal.personal-site.sub.personal-site-4": "Refactor or improve code",
     "systemGoal.personal-site.sub.personal-site-5": "Review the result",
     "systemGoal.portfolio-sites.title": "Build portfolio-style sites every day",
-    "systemGoal.portfolio-sites.description":
-      "Demonstrable projects that tell a story on GitHub.",
+    "systemGoal.portfolio-sites.description": "Demonstrable projects that tell a story on GitHub.",
     "systemGoal.portfolio-sites.sub.portfolio-sites-1": "Define the project idea",
     "systemGoal.portfolio-sites.sub.portfolio-sites-2": "Build the main layout",
     "systemGoal.portfolio-sites.sub.portfolio-sites-3": "Implement a key section",
     "systemGoal.portfolio-sites.sub.portfolio-sites-4": "Publish to GitHub",
     "systemGoal.portfolio-sites.sub.portfolio-sites-5": "Note what became portfolio material",
     "systemGoal.forge-ai.title": "Work on my Forge AI side project",
-    "systemGoal.forge-ai.description":
-      "Move what sets you forward — with clarity and next steps.",
+    "systemGoal.forge-ai.description": "Move what sets you forward — with clarity and next steps.",
     "systemGoal.forge-ai.sub.forge-ai-1": "Define the next task",
     "systemGoal.forge-ai.sub.forge-ai-2": "Implement or research",
     "systemGoal.forge-ai.sub.forge-ai-3": "Validate the result",
     "systemGoal.forge-ai.sub.forge-ai-4": "Log next steps",
-    "history.narrative.empty":
-      "Log days on the dashboard to see patterns here.",
-    "history.narrative.paceBand":
-      "Your recent pace is in the “{label}” band ({avg7}% on average in recent entries).",
-    "history.narrative.trendUp":
-      "You’re performing better than the previous window ({last}% vs {prev}%).",
-    "history.narrative.trendDown":
-      "Pace dropped versus the previous block ({last}% vs {prev}%).",
-    "history.narrative.trend30":
-      "Across 30 entries: {last}% vs {prev}% before.",
-    "history.narrative.strongest":
-      "Your strongest area is “{title}” ({rate}% of days closed).",
-    "history.narrative.neglected":
-      "“{title}” slips most often ({rate}% of days it appeared without 100%).",
+    "history.narrative.empty": "Log days on the dashboard to see patterns here.",
+    "history.narrative.paceBand": "Your recent pace is in the “{label}” band ({avg7}% on average in recent entries).",
+    "history.narrative.trendUp": "You’re performing better than the previous window ({last}% vs {prev}%).",
+    "history.narrative.trendDown": "Pace dropped versus the previous block ({last}% vs {prev}%).",
+    "history.narrative.trend30": "Across 30 entries: {last}% vs {prev}% before.",
+    "history.narrative.strongest": "Your strongest area is “{title}” ({rate}% of days closed).",
+    "history.narrative.neglected": "“{title}” slips most often ({rate}% of days it appeared without 100%).",
     "history.narrative.weakDay": "On average, your weakest day is {day}.",
     "history.narrative.strongDay": "On average, your strongest day is {day}.",
-    "history.narrative.bottleneck":
-      "Where you stall most: “{label}” ({goal}) — {rate}% completion when it appears.",
+    "history.narrative.bottleneck": "Where you stall most: “{label}” ({goal}) — {rate}% completion when it appears.",
     "history.narrative.streak": "Current full-day streak: {n}.",
-    "history.narrative.consistencyGood":
-      "On {pct}% of days you kept a strong pace (≥80%).",
-    "history.narrative.alertLowClose":
-      "“{title}” needs attention: low close rate in this period.",
+    "history.narrative.consistencyGood": "On {pct}% of days you kept a strong pace (≥80%).",
+    "history.narrative.alertLowClose": "“{title}” needs attention: low close rate in this period.",
     "history.narrative.alertTrendDown": "Recent dip in pace — worth revisiting one goal at a time.",
     "history.narrative.positiveTrend": "Improving trend in the last week of entries.",
     "analytics.insight.noHistory": "No days logged in history yet.",
-    "analytics.insight.consistencyGeneral":
-      "Your overall consistency (days ≥80%) is {pct}%.",
-    "analytics.insight.recentPerformance":
-      "Recent classification (7-day average): {label} ({avg7}%).",
-    "analytics.insight.noGoalDetail":
-      "Older entries lack per-goal detail — new closes feed goal and subtask analytics.",
-    "analytics.insight.mostConsistent":
-      "Your most consistent goal is “{title}” with a {rate}% completion rate (on days it appeared).",
-    "analytics.insight.mostNeglected":
-      "You struggle most with “{title}” — only {rate}% success on days that goal was active.",
-    "analytics.insight.trendUp":
-      "Your performance improved in the last 7 days ({last7}% vs {prev7}% in the previous 7).",
-    "analytics.insight.trendDown":
-      "Your performance dropped in the last 7 days ({last7}% vs {prev7}% in the previous 7).",
-    "analytics.insight.trendStable":
-      "Last 7 days are stable versus the prior 7 ({last7}% vs {prev7}%).",
-    "analytics.insight.weekdayBest":
-      "Best historical average: {day} ({avg}%).",
-    "analytics.insight.weekdayWorst":
-      "Lowest historical average: {day} ({avg}%).",
-    "analytics.insight.mostIgnoredSubtask":
-      "Most ignored subtask: “{label}” ({goalTitle}) — {rate}% completion when it appears.",
-    "analytics.insight.fullDayRate":
-      "{pct}% of logged days closed at 100%.",
+    "analytics.insight.consistencyGeneral": "Your overall consistency (days ≥80%) is {pct}%.",
+    "analytics.insight.recentPerformance": "Recent classification (7-day average): {label} ({avg7}%).",
+    "analytics.insight.noGoalDetail": "Older entries lack per-goal detail — new closes feed goal and subtask analytics.",
+    "analytics.insight.mostConsistent": "Your most consistent goal is “{title}” with a {rate}% completion rate (on days it appeared).",
+    "analytics.insight.mostNeglected": "You struggle most with “{title}” — only {rate}% success on days that goal was active.",
+    "analytics.insight.trendUp": "Your performance improved in the last 7 days ({last7}% vs {prev7}% in the previous 7).",
+    "analytics.insight.trendDown": "Your performance dropped in the last 7 days ({last7}% vs {prev7}% in the previous 7).",
+    "analytics.insight.trendStable": "Last 7 days are stable versus the prior 7 ({last7}% vs {prev7}%).",
+    "analytics.insight.weekdayBest": "Best historical average: {day} ({avg}%).",
+    "analytics.insight.weekdayWorst": "Lowest historical average: {day} ({avg}%).",
+    "analytics.insight.mostIgnoredSubtask": "Most ignored subtask: “{label}” ({goalTitle}) — {rate}% completion when it appears.",
+    "analytics.insight.fullDayRate": "{pct}% of logged days closed at 100%.",
     "analytics.momentum.90": "excellent — very strong pace",
     "analytics.momentum.70": "good — steady pace",
     "analytics.momentum.50": "moderate — room to level up",
     "analytics.momentum.30": "low — worth revisiting priorities",
     "analytics.momentum.0": "critical — one step at a time still counts",
-    "analytics.behavior.empty1":
-      "When you close days, this panel shows pace and consistency patterns.",
-    "analytics.behavior.empty2":
-      "Use the dashboard often so history reflects your day-to-day.",
-    "analytics.behavior.empty3":
-      "Come back after a few logged days to see clearer trends.",
-    "analytics.behavior.momentumLine":
-      "Recently your pace is {phrase} ({avg7}% on average).",
-    "analytics.behavior.trendUp":
-      "You improved versus the prior week: average from {prev7}% to {last7}%.",
-    "analytics.behavior.trendDown":
-      "Pace dipped a bit versus the prior week ({last7}% vs {prev7}%).",
-    "analytics.behavior.mostConsistent":
-      "The goal you close most often is “{title}”.",
-    "analytics.behavior.mostNeglected":
-      "Where you most often fail to close is “{title}”.",
-    "analytics.behavior.weakDay":
-      "{day} tends to be your lowest-output day.",
-    "analytics.behavior.consistencyGood":
-      "On {pct}% of days you kept a strong level (80%+ progress).",
-    "analytics.behavior.fullDayRate":
-      "On {pct}% of logged days you completed every visible goal.",
-    "analytics.behavior.fallbackDays":
-      "You have {totalDays} day(s) in history — the more days, the clearer the trend.",
-    "analytics.behavior.fallbackOpenDay":
-      "Open each day in the list below to review goals and subtasks from that moment.",
-    "analytics.behavior.fallbackFocus":
-      "Use these reads to decide where to push focus next week.",
-    "analytics.behavior.reinforcementStreak":
-      "Nice streak: {n} full day(s) in a row in history.",
-    "analytics.behavior.reinforcementUp":
-      "Recent performance improved — keep that rhythm.",
-    "analytics.behavior.reinforcementHabit":
-      "You’ve logged many full execution days — great habit.",
-  },
+    "analytics.behavior.empty1": "When you close days, this panel shows pace and consistency patterns.",
+    "analytics.behavior.empty2": "Use the dashboard often so history reflects your day-to-day.",
+    "analytics.behavior.empty3": "Come back after a few logged days to see clearer trends.",
+    "analytics.behavior.momentumLine": "Recently your pace is {phrase} ({avg7}% on average).",
+    "analytics.behavior.trendUp": "You improved versus the prior week: average from {prev7}% to {last7}%.",
+    "analytics.behavior.trendDown": "Pace dipped a bit versus the prior week ({last7}% vs {prev7}%).",
+    "analytics.behavior.mostConsistent": "The goal you close most often is “{title}”.",
+    "analytics.behavior.mostNeglected": "Where you most often fail to close is “{title}”.",
+    "analytics.behavior.weakDay": "{day} tends to be your lowest-output day.",
+    "analytics.behavior.consistencyGood": "On {pct}% of days you kept a strong level (80%+ progress).",
+    "analytics.behavior.fullDayRate": "On {pct}% of logged days you completed every visible goal.",
+    "analytics.behavior.fallbackDays": "You have {totalDays} day(s) in history — the more days, the clearer the trend.",
+    "analytics.behavior.fallbackOpenDay": "Open each day in the list below to review goals and subtasks from that moment.",
+    "analytics.behavior.fallbackFocus": "Use these reads to decide where to push focus next week.",
+    "analytics.behavior.reinforcementStreak": "Nice streak: {n} full day(s) in a row in history.",
+    "analytics.behavior.reinforcementUp": "Recent performance improved — keep that rhythm.",
+    "analytics.behavior.reinforcementHabit": "You’ve logged many full execution days — great habit."
+  }
 };

@@ -1,38 +1,24 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  startTransition,
-} from "react";
-import {
-  filterGoalsForCalendarDay,
-  sortGoalsByOrder,
-} from "@/lib/goalModel";
+import { useCallback, useEffect, useRef, useState, startTransition } from "react";
+import { filterGoalsForCalendarDay, sortGoalsByOrder } from "@/lib/goalModel";
 import { todayYMD } from "@/lib/dateUtils";
 import { computeOverallPercent } from "@/lib/progress";
 import { applyToggleSubtask } from "@/lib/repositories/dailyActions";
-import {
-  loadRemoteUserState,
-  persistFullStateRemote,
-} from "@/lib/repositories/remoteSupabaseState";
-import {
-  readDailyFocusCache,
-  writeDailyFocusCache,
-} from "@/lib/cache/dailyFocusCache";
+import { loadRemoteUserState, persistFullStateRemote } from "@/lib/repositories/remoteSupabaseState";
+import { readDailyFocusCache, writeDailyFocusCache } from "@/lib/cache/dailyFocusCache";
 import { useAuth } from "@/hooks/use-auth";
-
 export function useDailyFocusState() {
-  const { supabase, user, authLoading } = useAuth();
-  /** Stable id — `user` object identity changes on Supabase token refresh (e.g. tab focus). */
+  const {
+    supabase,
+    user,
+    authLoading
+  } = useAuth();
   const userId = user?.id ?? null;
   const [state, setState] = useState(null);
   const [bootLoading, setBootLoading] = useState(true);
   const [syncError, setSyncError] = useState(null);
   const skipPersist = useRef(true);
-
   useEffect(() => {
     if (authLoading || !userId || !supabase) {
       if (!authLoading && !userId) {
@@ -42,9 +28,7 @@ export function useDailyFocusState() {
       }
       return;
     }
-
     let cancelled = false;
-
     const cached = readDailyFocusCache(userId);
     if (cached?.state) {
       setState(cached.state);
@@ -53,7 +37,6 @@ export function useDailyFocusState() {
     } else {
       setBootLoading(true);
     }
-
     async function load() {
       try {
         setSyncError(null);
@@ -74,14 +57,11 @@ export function useDailyFocusState() {
         if (!cancelled) setBootLoading(false);
       }
     }
-
     startTransition(() => load());
-
     return () => {
       cancelled = true;
     };
   }, [authLoading, userId, supabase]);
-
   useEffect(() => {
     if (!userId || !supabase || !state || bootLoading) return;
     if (skipPersist.current) {
@@ -89,34 +69,23 @@ export function useDailyFocusState() {
       return;
     }
     const t = setTimeout(() => {
-      persistFullStateRemote(supabase, userId, state)
-        .then(() => {
-          setSyncError(null);
-          writeDailyFocusCache(userId, state);
-        })
-        .catch((e) => {
-          setSyncError(e?.message ?? "error.save");
-        });
+      persistFullStateRemote(supabase, userId, state).then(() => {
+        setSyncError(null);
+        writeDailyFocusCache(userId, state);
+      }).catch(e => {
+        setSyncError(e?.message ?? "error.save");
+      });
     }, 500);
     return () => clearTimeout(t);
   }, [state, userId, supabase, bootLoading]);
-
   const toggleSubtask = useCallback((goalId, subtaskId) => {
-    setState((prev) => applyToggleSubtask(prev, goalId, subtaskId));
+    setState(prev => applyToggleSubtask(prev, goalId, subtaskId));
   }, []);
-
   const dayYmd = state ? state.lastResetDate || todayYMD() : todayYMD();
-  const dashboardGoals = state
-    ? sortGoalsByOrder(filterGoalsForCalendarDay(state.goals, dayYmd))
-    : [];
-  const overallPercent = state
-    ? computeOverallPercent(state.goals, dayYmd, state.linkedinFriday)
-    : 0;
+  const dashboardGoals = state ? sortGoalsByOrder(filterGoalsForCalendarDay(state.goals, dayYmd)) : [];
+  const overallPercent = state ? computeOverallPercent(state.goals, dayYmd, state.linkedinFriday) : 0;
   const dayComplete = overallPercent === 100;
-
-  const ready =
-    !authLoading && !bootLoading && Boolean(userId) && Boolean(state);
-
+  const ready = !authLoading && !bootLoading && Boolean(userId) && Boolean(state);
   return {
     ready,
     state,
@@ -127,6 +96,6 @@ export function useDailyFocusState() {
     dashboardGoals,
     syncError,
     authLoading,
-    bootLoading,
+    bootLoading
   };
 }

@@ -1,7 +1,3 @@
-/**
- * Vista agregada para o dashboard e analytics — sem I/O.
- * @param {import("@/lib/models/domain.js").DailyFocusPersistedState | null} state
- */
 export function getDashboardData(state) {
   if (!state) return null;
   return {
@@ -10,6 +6,6 @@ export function getDashboardData(state) {
     goals: state.goals,
     history: state.history,
     linkedinFriday: state.linkedinFriday,
-    preferences: state.preferences ?? null,
+    preferences: state.preferences ?? null
   };
 }

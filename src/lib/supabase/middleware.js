@@ -1,36 +1,39 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import { getPublicSupabaseConfigOrNull } from "@/lib/env/public";
-
-/**
- * Refreshes Supabase session from cookies (refresh token).
- */
 export async function updateSession(request) {
-  let supabaseResponse = NextResponse.next({ request });
-
+  let supabaseResponse = NextResponse.next({
+    request
+  });
   const config = getPublicSupabaseConfigOrNull();
   if (!config) {
     return supabaseResponse;
   }
-
-  const { url, key } = config;
+  const {
+    url,
+    key
+  } = config;
   const supabase = createServerClient(url, key, {
     cookies: {
       getAll() {
         return request.cookies.getAll();
       },
       setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value }) =>
-          request.cookies.set(name, value)
-        );
-        supabaseResponse = NextResponse.next({ request });
-        cookiesToSet.forEach(({ name, value, options }) =>
-          supabaseResponse.cookies.set(name, value, options)
-        );
-      },
-    },
+        cookiesToSet.forEach(({
+          name,
+          value
+        }) => request.cookies.set(name, value));
+        supabaseResponse = NextResponse.next({
+          request
+        });
+        cookiesToSet.forEach(({
+          name,
+          value,
+          options
+        }) => supabaseResponse.cookies.set(name, value, options));
+      }
+    }
   });
-
   await supabase.auth.getUser();
   return supabaseResponse;
 }

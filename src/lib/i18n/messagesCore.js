@@ -1,4 +1,3 @@
-/** Base dictionary — merged with messagesExtended in messages.js */
 export const coreMessages = {
   pt: {
     "nav.vision": "Visão",
@@ -7,8 +6,7 @@ export const coreMessages = {
     "nav.goals": "Metas",
     "brand.subtitle": "Rumo ao próximo role",
     "auth.syncTitle": "Entre para sincronizar",
-    "auth.syncBody":
-      "O teu progresso fica guardado na conta — continua onde paraste em qualquer dispositivo.",
+    "auth.syncBody": "O teu progresso fica guardado na conta — continua onde paraste em qualquer dispositivo.",
     "auth.google": "Entrar com Google",
     "auth.googleLoading": "A abrir Google…",
     "auth.termsHint": "Ao continuar, aceitas os termos do fornecedor de login.",
@@ -16,14 +14,12 @@ export const coreMessages = {
     "auth.signOut": "Sair",
     "auth.account": "Conta",
     "auth.urlError": "Não foi possível concluir o login. Tenta novamente.",
-    "auth.initConfigMissing":
-      "Configuração Supabase em falta (variáveis de ambiente).",
+    "auth.initConfigMissing": "Configuração Supabase em falta (variáveis de ambiente).",
     "auth.supabaseUnavailable": "Cliente Supabase indisponível",
     "error.reload": "Recarregar página",
     "dashboard.analysis": "Análise",
     "dashboard.title": "Histórico",
-    "dashboard.subtitle":
-      "Entenda seu ritmo, veja padrões e abra cada dia para revisar o que foi feito.",
+    "dashboard.subtitle": "Entenda seu ritmo, veja padrões e abra cada dia para revisar o que foi feito.",
     "dashboard.recentPace": "Ritmo recente",
     "dashboard.filters.period": "Período",
     "dashboard.filters.goal": "Meta",
@@ -31,17 +27,13 @@ export const coreMessages = {
     "dashboard.filters.allGoals": "Todas as metas",
     "dashboard.reading": "Leitura do seu comportamento",
     "dashboard.dailyEvolution": "Evolução diária",
-    "dashboard.barHint":
-      "Cada barra é um dia — passe o cursor para ver a data",
-    "dashboard.barSub":
-      "Até {n} dia(s) no período filtrado · mais recente à direita",
+    "dashboard.barHint": "Cada barra é um dia — passe o cursor para ver a data",
+    "dashboard.barSub": "Até {n} dia(s) no período filtrado · mais recente à direita",
     "dashboard.hoverBars": "Passe o mouse sobre as barras",
     "dashboard.fullDay": "dia completo",
     "dashboard.goalsToday": "Metas do dia",
-    "dashboard.streakFooter":
-      "Virada automática à meia-noite · dados na tua conta",
-    "dashboard.dayDone":
-      "Dia no bolso — amanhã é outra rodada com a mesma clareza.",
+    "dashboard.streakFooter": "Virada automática à meia-noite · dados na tua conta",
+    "dashboard.dayDone": "Dia no bolso — amanhã é outra rodada com a mesma clareza.",
     "dashboard.sectionGoals": "Metas do dia",
     "period.7": "7 dias",
     "period.14": "14 dias",
@@ -65,8 +57,7 @@ export const coreMessages = {
     "goals.daysPrefix": "Dias:",
     "goals.weekdaysTitle": "Dias no dashboard",
     "goals.allWeekdays": "Todos os dias da semana",
-    "goals.weekdaysHint":
-      "Conta para o progresso do dia só nos dias selecionados (e se a meta estiver visível e ativa).",
+    "goals.weekdaysHint": "Conta para o progresso do dia só nos dias selecionados (e se a meta estiver visível e ativa).",
     "goals.linkedinTitle": "Post no LinkedIn (sexta)",
     "weekday.mon": "Seg",
     "weekday.tue": "Ter",
@@ -86,12 +77,11 @@ export const coreMessages = {
     "dashboard.metaVisibleMany": "{n} metas visíveis",
     "dashboard.percentDone": "{n}% concluído",
     "dashboard.dayDoneLine": "Tudo concluído hoje — consistência em ação.",
-    "dashboard.dayTodoLine":
-      "Foque no que falta; cada subtarefa aproxima o resultado.",
+    "dashboard.dayTodoLine": "Foque no que falta; cada subtarefa aproxima o resultado.",
     "dashboard.linkHistory": "Ver histórico e análises",
     "dashboard.frentes0": "Nenhuma frente hoje",
     "dashboard.frentes1": "1 frente de execução",
-    "dashboard.frentesN": "{n} frentes de execução",
+    "dashboard.frentesN": "{n} frentes de execução"
   },
   en: {
     "nav.vision": "View",
@@ -100,8 +90,7 @@ export const coreMessages = {
     "nav.goals": "Goals",
     "brand.subtitle": "Toward your next role",
     "auth.syncTitle": "Sign in to sync",
-    "auth.syncBody":
-      "Your progress stays in your account — pick up where you left off on any device.",
+    "auth.syncBody": "Your progress stays in your account — pick up where you left off on any device.",
     "auth.google": "Continue with Google",
     "auth.googleLoading": "Opening Google…",
     "auth.termsHint": "By continuing, you accept the login provider’s terms.",
@@ -109,14 +98,12 @@ export const coreMessages = {
     "auth.signOut": "Sign out",
     "auth.account": "Account",
     "auth.urlError": "Could not complete sign-in. Please try again.",
-    "auth.initConfigMissing":
-      "Supabase configuration missing (environment variables).",
+    "auth.initConfigMissing": "Supabase configuration missing (environment variables).",
     "auth.supabaseUnavailable": "Supabase client unavailable",
     "error.reload": "Reload page",
     "dashboard.analysis": "Analysis",
     "dashboard.title": "History",
-    "dashboard.subtitle":
-      "Understand your pace, spot patterns, and open each day to review what you did.",
+    "dashboard.subtitle": "Understand your pace, spot patterns, and open each day to review what you did.",
     "dashboard.recentPace": "Recent pace",
     "dashboard.filters.period": "Period",
     "dashboard.filters.goal": "Goal",
@@ -125,15 +112,12 @@ export const coreMessages = {
     "dashboard.reading": "Reading your behavior",
     "dashboard.dailyEvolution": "Daily evolution",
     "dashboard.barHint": "Each bar is a day — hover to see the date",
-    "dashboard.barSub":
-      "Up to {n} day(s) in the filtered period · newest on the right",
+    "dashboard.barSub": "Up to {n} day(s) in the filtered period · newest on the right",
     "dashboard.hoverBars": "Hover over the bars",
     "dashboard.fullDay": "full day",
     "dashboard.goalsToday": "Today’s goals",
-    "dashboard.streakFooter":
-      "Automatic day rollover at midnight · data in your account",
-    "dashboard.dayDone":
-      "Day in the bag — tomorrow is another round with the same clarity.",
+    "dashboard.streakFooter": "Automatic day rollover at midnight · data in your account",
+    "dashboard.dayDone": "Day in the bag — tomorrow is another round with the same clarity.",
     "dashboard.sectionGoals": "Today’s goals",
     "period.7": "7 days",
     "period.14": "14 days",
@@ -157,8 +141,7 @@ export const coreMessages = {
     "goals.daysPrefix": "Days:",
     "goals.weekdaysTitle": "Days on dashboard",
     "goals.allWeekdays": "Every day of the week",
-    "goals.weekdaysHint":
-      "Progress counts only on selected days (when the goal is visible and active).",
+    "goals.weekdaysHint": "Progress counts only on selected days (when the goal is visible and active).",
     "goals.linkedinTitle": "LinkedIn post (Friday)",
     "weekday.mon": "Mon",
     "weekday.tue": "Tue",
@@ -178,11 +161,10 @@ export const coreMessages = {
     "dashboard.metaVisibleMany": "{n} visible goals",
     "dashboard.percentDone": "{n}% done",
     "dashboard.dayDoneLine": "All done today — consistency in action.",
-    "dashboard.dayTodoLine":
-      "Focus on what’s left; each subtask moves the needle.",
+    "dashboard.dayTodoLine": "Focus on what’s left; each subtask moves the needle.",
     "dashboard.linkHistory": "View history & insights",
     "dashboard.frentes0": "No fronts today",
     "dashboard.frentes1": "1 execution front",
-    "dashboard.frentesN": "{n} execution fronts",
-  },
+    "dashboard.frentesN": "{n} execution fronts"
+  }
 };

@@ -1,27 +1,16 @@
 import { LINKEDIN_FRIDAY_META } from "@/data/linkedinFriday";
-import {
-  filterGoalsForCalendarDay,
-  linkedinForProgressOnDate,
-} from "@/lib/goalModel";
+import { filterGoalsForCalendarDay, linkedinForProgressOnDate } from "@/lib/goalModel";
 import { computeGoalPercent } from "@/lib/progress";
 import { weekdayKeyFromYmd } from "@/lib/visibleDays";
-
-/**
- * Snapshot enriquecido de um dia para persistência em `history[].detail`.
- * @param {unknown[]} goalsSnapshot
- * @param {unknown} linkedinSnapshot
- * @param {string} dateYmd
- */
 export function buildHistoryDayDetail(goalsSnapshot, linkedinSnapshot, dateYmd) {
   const visibleGoals = filterGoalsForCalendarDay(goalsSnapshot, dateYmd);
   const li = linkedinForProgressOnDate(linkedinSnapshot, dateYmd);
   const goals = [];
   let subtasksDoneTotal = 0;
   let subtasksValidTotal = 0;
-
   for (const g of visibleGoals) {
     const subs = Array.isArray(g.subtasks) ? g.subtasks : [];
-    const done = subs.filter((s) => s.done).length;
+    const done = subs.filter(s => s.done).length;
     const total = subs.length;
     subtasksDoneTotal += done;
     subtasksValidTotal += total;
@@ -34,14 +23,13 @@ export function buildHistoryDayDetail(goalsSnapshot, linkedinSnapshot, dateYmd) 
       completed: total > 0 && done === total,
       subtasksDone: done,
       subtasksTotal: total,
-      subtasksCompletedLabels: subs.filter((s) => s.done).map((s) => s.label),
-      subtasksPendingLabels: subs.filter((s) => !s.done).map((s) => s.label),
+      subtasksCompletedLabels: subs.filter(s => s.done).map(s => s.label),
+      subtasksPendingLabels: subs.filter(s => !s.done).map(s => s.label)
     });
   }
-
   if (li) {
     const subs = li.subtasks || [];
-    const done = subs.filter((s) => s.done).length;
+    const done = subs.filter(s => s.done).length;
     const total = subs.length;
     subtasksDoneTotal += done;
     subtasksValidTotal += total;
@@ -54,11 +42,10 @@ export function buildHistoryDayDetail(goalsSnapshot, linkedinSnapshot, dateYmd) 
       completed: total > 0 && done === total,
       subtasksDone: done,
       subtasksTotal: total,
-      subtasksCompletedLabels: subs.filter((s) => s.done).map((s) => s.label),
-      subtasksPendingLabels: subs.filter((s) => !s.done).map((s) => s.label),
+      subtasksCompletedLabels: subs.filter(s => s.done).map(s => s.label),
+      subtasksPendingLabels: subs.filter(s => !s.done).map(s => s.label)
     });
   }
-
   return {
     version: 2,
     dateYmd,
@@ -67,22 +54,16 @@ export function buildHistoryDayDetail(goalsSnapshot, linkedinSnapshot, dateYmd) 
     visibleGoalsCount: goals.length,
     subtasksDoneTotal,
     subtasksValidTotal,
-    goalsCompleteCount: goals.filter((x) => x.completed).length,
+    goalsCompleteCount: goals.filter(x => x.completed).length,
     goalsTotalCount: goals.length,
-    goals,
+    goals
   };
 }
-
-/**
- * Normaliza um registo ao ler do storage (compatível com entradas antigas sem `detail`).
- * @param {unknown} h
- */
 export function normalizeHistoryEntryForRead(h) {
   if (!h || typeof h !== "object") return null;
   const date = typeof h.date === "string" ? h.date : "";
   if (!date) return null;
-  const percentComplete =
-    typeof h.percentComplete === "number" ? h.percentComplete : 0;
+  const percentComplete = typeof h.percentComplete === "number" ? h.percentComplete : 0;
   const completedFullDay = Boolean(h.completedFullDay);
   const detailRaw = h.detail;
   if (detailRaw && typeof detailRaw === "object" && detailRaw.version >= 2) {
@@ -90,19 +71,15 @@ export function normalizeHistoryEntryForRead(h) {
       date,
       percentComplete,
       completedFullDay,
-      detail: detailRaw,
+      detail: detailRaw
     };
   }
-  if (
-    detailRaw &&
-    typeof detailRaw === "object" &&
-    Array.isArray(detailRaw.goals)
-  ) {
+  if (detailRaw && typeof detailRaw === "object" && Array.isArray(detailRaw.goals)) {
     return {
       date,
       percentComplete,
       completedFullDay,
-      detail: detailRaw,
+      detail: detailRaw
     };
   }
   return {
@@ -120,15 +97,11 @@ export function normalizeHistoryEntryForRead(h) {
       subtasksValidTotal: null,
       goalsCompleteCount: null,
       goalsTotalCount: null,
-      goals: [],
-    },
+      goals: []
+    }
   };
 }
-
-/** @param {unknown[]} history */
 export function normalizeHistoryArray(history) {
   if (!Array.isArray(history)) return [];
-  return history
-    .map((x) => normalizeHistoryEntryForRead(x))
-    .filter(Boolean);
+  return history.map(x => normalizeHistoryEntryForRead(x)).filter(Boolean);
 }
