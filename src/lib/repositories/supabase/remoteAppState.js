@@ -8,6 +8,26 @@ import { fetchUserPreferences, upsertUserPreferences } from "@/lib/repositories/
 import { insertSubtasks } from "@/lib/repositories/supabase/subtasksRemote";
 export { fetchGoalsWithSubtasks } from "@/lib/repositories/supabase/goalsRemote";
 const LINKEDIN_SYSTEM_KEY = LINKEDIN_FRIDAY_META.id;
+
+const seedInFlight = new Map();
+
+async function ensureSeedIfNoGoals(supabase, userId) {
+  const n = await countGoalsForUser(supabase, userId);
+  if (n > 0) return;
+  if (!seedInFlight.has(userId)) {
+    const promise = (async () => {
+      const n2 = await countGoalsForUser(supabase, userId);
+      if (n2 === 0) {
+        await seedDefaultUserData(supabase, userId);
+      }
+    })();
+    seedInFlight.set(userId, promise);
+    void promise.finally(() => {
+      seedInFlight.delete(userId);
+    });
+  }
+  await seedInFlight.get(userId);
+}
 function buildLinkedinFromRow(row, subs) {
   const base = emptyLinkedinFridayFromTemplate();
   if (!row) return base;
@@ -170,9 +190,6 @@ export async function tryMigrateLocalToRemote(supabase, userId) {
   return false;
 }
 export async function loadRemoteUserState(supabase, userId) {
-  const n = await countGoalsForUser(supabase, userId);
-  if (n === 0) {
-    await seedDefaultUserData(supabase, userId);
-  }
+  await ensureSeedIfNoGoals(supabase, userId);
   return assembleStateFromRemote(supabase, userId);
 }
