@@ -47,9 +47,13 @@ function appGoalToInsertRow(userId, g) {
   const gid = typeof g.id === "string" ? g.id.trim() : "";
   if (SYSTEM_GOAL_IDS.has(gid)) {
     row.system_key = gid;
+    row.id = crypto.randomUUID();
+  } else if (isValidUuid(gid)) {
+    row.system_key = null;
+    row.id = gid;
   } else {
     row.system_key = null;
-    if (isValidUuid(gid)) row.id = gid;
+    row.id = crypto.randomUUID();
   }
   return sanitizeOptionalUuidId(row);
 }
@@ -57,6 +61,7 @@ function linkedinGoalInsertRow(userId, state) {
   const li = state.linkedinFriday ?? emptyLinkedinFridayFromTemplate();
   return {
     user_id: userId,
+    id: crypto.randomUUID(),
     title: LINKEDIN_FRIDAY_META.title,
     description: LINKEDIN_FRIDAY_META.description,
     category: null,
