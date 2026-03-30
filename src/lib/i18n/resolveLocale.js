@@ -5,7 +5,7 @@ export const LOCALES = /** @type {const} */ (["pt", "en"]);
 const STORAGE_KEY = "daily-focus:locale";
 
 /**
- * Idioma inicial antes de auth / prefs (navegador + cache local).
+ * Initial locale before auth / prefs (browser + local cache).
  * @returns {AppLocale}
  */
 export function resolveInitialLocale() {
