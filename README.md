@@ -31,6 +31,18 @@ Staying consistent across multiple goals is hard without clear visibility into w
 | Auth & DB | [Supabase](https://supabase.com/) (Auth, Postgres, RLS) |
 | Hosting | Vercel (or any Node.js host) |
 
+## CI & deployment
+
+**GitHub Actions** runs a CI workflow on every **push** and **pull request** targeting `main`:
+
+1. `npm ci` — install dependencies (uses npm cache)
+2. `npm run lint` — ESLint
+3. `npm run build` — Next.js production build (uses placeholder public env vars so the build does not require secrets)
+
+The workflow fails the check if any step fails. There is no test script in this repo yet, so tests are not run.
+
+**Hosting:** production and preview deployments are handled by **Vercel** through its [GitHub integration](https://vercel.com/docs/deployments/git/vercel-for-github). This repository does not deploy from GitHub Actions; CI only validates the code.
+
 ## Project Structure
 
 ```
@@ -92,7 +104,10 @@ Required variables:
 
 1. Run the SQL migrations in order from `supabase/migrations/` in your Supabase SQL Editor
 2. Enable **Google** provider under Authentication > Providers (requires Google Cloud Console OAuth credentials)
-3. Add `http://localhost:3000/auth/callback` to **Redirect URLs** under Authentication > URL Configuration
+3. Under Authentication > URL Configuration, add **Redirect URLs** for every environment that will complete Google OAuth (include `/auth/callback` on each origin):
+   - Local: `http://localhost:3000/auth/callback`
+   - Production: `https://your-domain.com/auth/callback` (or your Vercel URL)
+   - **Preview deployments:** add `https://*.vercel.app/auth/callback` if your Supabase plan supports wildcard redirect URLs, or add each preview URL as needed
 
 ### 4. Run locally
 
