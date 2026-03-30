@@ -1,5 +1,6 @@
 "use client";
 
+import { AppMobileNav } from "@/components/AppMobileNav";
 import { AppSidebar } from "@/components/AppSidebar";
 export function AppShell({
   children
@@ -12,7 +13,10 @@ export function AppShell({
 
       <div className="relative mx-auto flex max-w-[1400px]">
         <AppSidebar />
-        <div className="flex min-h-screen flex-1 flex-col">{children}</div>
+        <div className="flex min-h-screen flex-1 flex-col pb-[calc(4.5rem+env(safe-area-inset-bottom))] lg:pb-0">
+          {children}
+        </div>
       </div>
+      <AppMobileNav />
     </div>;
 }

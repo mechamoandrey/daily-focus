@@ -61,9 +61,11 @@ export function GoalCard({
           </div>
         </div>
 
-        <div className="space-y-1.5">
-          {display.subtasks.map(s => <SubtaskItem key={s.id} goalId={goal.id} subtask={s} onToggle={onToggle} />)}
-        </div>
+        {display.subtasks.length === 0 ? <p className="rounded-xl border border-amber-500/20 bg-amber-500/[0.06] px-3 py-2.5 text-sm leading-relaxed text-amber-100/90">
+            {t("goalCard.emptySubtasks")}
+          </p> : <div className="space-y-1.5">
+            {display.subtasks.map(s => <SubtaskItem key={s.id} goalId={goal.id} subtask={s} onToggle={onToggle} />)}
+          </div>}
       </div>
     </motion.article>;
 }

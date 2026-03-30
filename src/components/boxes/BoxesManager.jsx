@@ -258,6 +258,9 @@ function BoxSummaryCard({
           <p className="line-clamp-2 text-sm text-zinc-400">
             {display.description}
           </p>
+          {subs === 0 ? <p className="mt-2 rounded-lg border border-amber-500/20 bg-amber-500/[0.06] px-2.5 py-2 text-xs leading-relaxed text-amber-100/90">
+              {t("goals.summaryEmptySubtasks")}
+            </p> : null}
         </div>
         <div className="shrink-0 text-right">
           <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-500">
