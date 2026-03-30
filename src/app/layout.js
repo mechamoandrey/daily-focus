@@ -12,10 +12,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const metadataBase =
+  typeof process.env.VERCEL_URL === "string" && process.env.VERCEL_URL
+    ? new URL(`https://${process.env.VERCEL_URL}`)
+    : new URL("http://localhost:3000");
+
 export const metadata = {
-  title: "Daily Focus — daily execution tracker",
+  metadataBase,
+  title: {
+    default: "Daily Focus — daily execution tracker",
+    template: "%s · Daily Focus",
+  },
   description:
     "Goal tracker with daily progress, streaks, and analytics — built for consistency.",
+  openGraph: {
+    title: "Daily Focus — daily execution tracker",
+    description:
+      "Goal tracker with daily progress, streaks, and analytics — built for consistency.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
