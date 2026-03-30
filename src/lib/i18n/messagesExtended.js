@@ -216,6 +216,7 @@ export const extendedMessages = {
     "goals.form.save": "Salvar meta",
     "goals.deleteConfirm": "Excluir a meta “{title}”? Isso não pode ser desfeito.",
     "goals.intro": "Ajuste título, descrição e checklist. O que estiver visível entra no dashboard nos dias marcados.",
+    "goals.summaryEmptySubtasks": "Sem subtarefas cadastradas — toque para editar e adicionar passos ao checklist.",
     "goals.emptyUser": "Você ainda não criou metas próprias — as metas iniciais seguem no dashboard. Toque em \"Nova meta\" para adicionar uma.",
     "goals.reload": "Recarregar página",
     "goals.toast.saved": "Alterações salvas neste dispositivo.",
