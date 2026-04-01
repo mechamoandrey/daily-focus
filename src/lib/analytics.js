@@ -67,8 +67,9 @@ export function getFullDayRate(history) {
 function detailGoals(entry) {
   const d = entry?.detail;
   if (!d || typeof d !== "object") return [];
-  if (d.isLegacy) return [];
   const g = d.goals;
+  if (Array.isArray(g) && g.length > 0) return g;
+  if (d.isLegacy) return [];
   return Array.isArray(g) ? g : [];
 }
 export function getDetailGoals(entry) {

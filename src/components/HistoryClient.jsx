@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { CaretDown, CaretRight, Sparkle } from "@phosphor-icons/react";
 import { AppShell } from "@/components/AppShell";
 import { useDailyFocusState } from "@/hooks/useDailyFocusState";
-import { aggregateByMeta, getMomentumBadgeClasses, sortedDesc } from "@/lib/analytics";
+import { aggregateByMeta, getAverageProgress, getBestStreak, getMomentumBadgeClasses, sortedDesc } from "@/lib/analytics";
 import { applyHistoryFilters, PERIOD_30 } from "@/lib/historyFilters";
 import { buildIntelligenceNarrative, computeHistoricoBundle } from "@/lib/historyIntelligence";
 import { formatYMDLongLocalized } from "@/lib/dateUtils";
@@ -234,6 +234,12 @@ export function HistoryClient() {
   const metaRows = useMemo(() => aggregateByMeta(filteredHistory), [filteredHistory]);
   const sorted = useMemo(() => sortedDesc(filteredHistory), [filteredHistory]);
   const goalOptions = useMemo(() => buildHistoryGoalFilterOptions(state, t), [state, t]);
+  const historyLast30 = useMemo(() => applyHistoryFilters(fullHistory, {
+    period: PERIOD_30,
+    goalId
+  }), [fullHistory, goalId]);
+  const avgCompletion30 = useMemo(() => getAverageProgress(historyLast30, 30), [historyLast30]);
+  const bestStreak30 = useMemo(() => getBestStreak(historyLast30), [historyLast30]);
   const formatHistoryDate = useMemo(() => d => formatYMDLongLocalized(d, locale), [locale]);
   const snapshot = bundle.snapshot;
   const score = snapshot.performance.avg7;
@@ -277,6 +283,24 @@ export function HistoryClient() {
           <motion.div variants={ITEM}>
             <HistoryFilters period={period} onPeriod={setPeriod} goalId={goalId} onGoal={setGoalId} goalOptions={goalOptions} />
           </motion.div>
+
+          {historyLast30.length > 0 ? <motion.section variants={ITEM} className="rounded-2xl border border-white/[0.06] bg-zinc-900/40 px-4 py-3 ring-1 ring-white/[0.04] sm:px-5 sm:py-4">
+              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
+                {t("history.behaviorSummaryTitle")}
+              </p>
+              <div className="mt-2 flex flex-col gap-1 text-sm text-zinc-300 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-1">
+                {avgCompletion30 != null ? <span>
+                    {t("history.summaryAvg30", {
+                pct: avgCompletion30
+              })}
+                  </span> : null}
+                {bestStreak30 > 0 ? <span className="text-zinc-400">
+                    {t("history.summaryBestStreak", {
+                n: bestStreak30
+              })}
+                  </span> : null}
+              </div>
+            </motion.section> : null}
 
           <motion.section variants={ITEM} className="rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-950/40 via-zinc-950/40 to-zinc-950/80 p-5 sm:p-6 ring-1 ring-violet-500/15">
             <div className="flex flex-wrap items-start gap-3">

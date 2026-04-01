@@ -1,5 +1,6 @@
-import { getDetailGoals, sortedAsc } from "@/lib/analytics";
+import { sortedAsc } from "@/lib/analytics";
 import { addDaysYMD, ymdCompare } from "@/lib/dateUtils";
+import { normalizeHistoryEntryForRead } from "@/lib/historyDetail";
 export const PERIOD_ALL = "all";
 export const PERIOD_7 = "7";
 export const PERIOD_14 = "14";
@@ -33,8 +34,13 @@ export function sliceHistoryByPeriod(history, period) {
 }
 export function filterHistoryByGoal(history, goalId) {
   if (!goalId || goalId === "all") return history;
-  const id = String(goalId);
-  return history.filter(e => getDetailGoals(e).some(g => g && String(g.id) === id));
+  const want = String(goalId).trim();
+  return history.filter(e => {
+    const norm = normalizeHistoryEntryForRead(e);
+    const goals = norm?.detail?.goals;
+    if (!Array.isArray(goals) || goals.length === 0) return false;
+    return goals.some(g => g && String(g.id).trim() === want);
+  });
 }
 export function applyHistoryFilters(history, filters) {
   const periodSlice = sliceHistoryByPeriod(history, filters.period);
